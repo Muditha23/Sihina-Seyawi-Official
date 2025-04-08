@@ -151,10 +151,10 @@ function openNovelModal(novel) {
                         ${generateRatingStarsHTML(novel.averageRating, novel.totalRatings)}
                     </div>
                     <p class="text-gray-600 text-lg leading-relaxed">${novel.description || novel.shortDescription}</p>
-                    <div class="space-y-3 bg-gray-50 p-4 rounded-lg">
-                        <p class="flex items-center"><i class="fas fa-user-edit w-6"></i><span class="font-semibold mr-2">Author:</span> ${novel.author}</p>
-                        <p class="flex items-center"><i class="fas fa-bookmark w-6"></i><span class="font-semibold mr-2">Genre:</span> ${novel.genre}</p>
-                        <p class="flex items-center"><i class="fas fa-calendar-alt w-6"></i><span class="font-semibold mr-2">Published:</span> ${novel.publishDate}</p>
+                    <div class="space-y-3 bg-pink-50 p-4 rounded-lg">
+                        <p class="flex items-center text-gray-600"><i class="fas fa-user-edit w-6"></i><span class="font-semibold mr-2 text-gray-600">Author:</span> ${novel.author}</p>
+                        <p class="flex items-center text-gray-600"><i class="fas fa-bookmark w-6"></i><span class="font-semibold mr-2 text-gray-600">Genre:</span> ${novel.genre}</p>
+                        <p class="flex items-center text-gray-600"><i class="fas fa-calendar-alt w-6"></i><span class="font-semibold mr-2 text-gray-600">Published:</span> ${novel.publishDate}</p>
                     </div>
                     <a href="Novels.html" 
                        class="inline-block w-full text-center mt-6 px-8 py-4 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transform hover:-translate-y-1 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl">
