@@ -2,13 +2,150 @@
 const novels = [
     {
         id: 1,
+        title: "ලං වී හදට රහසින්",
+        author: "Tharuka Sewwandi",
+        genre: "Romance",
+        coverImg: "img/ලංවී හදට රහසින්.jpg",
+        shortDescription: "A passionate love story set in the city of lights.",
+        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
+        publishDate: "2023-10-01",
+        Episodes: 24,
+        episodes: [
+            {
+                id: 1,
+                title: "Intro",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Introduction.txt"
+            },
+            {
+                id: 2,
+                title: "Episode 01",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 01.txt"
+            },
+            {
+                id: 3,
+                title: "Episode 02",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 02.txt"
+            },
+            {
+                id: 4,
+                title: "Episode 03",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 03.txt"
+            },
+            {
+                id: 5,
+                title: "Episode 04",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 04.txt"
+            },
+            {
+                id: 6,
+                title: "Episode 05",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 05.txt"
+            },
+            {
+                id: 7,
+                title: "Episode 06",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 06.txt"
+            },
+            {
+                id: 8,
+                title: "Episode 07",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 07.txt"
+            },
+            {
+                id: 9,
+                title: "Episode 08",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 08.txt"
+            },
+            {
+                id: 10,
+                title: "Episode 09",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 09.txt"
+            },
+            {
+                id: 11,
+                title: "Episode 10",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 10.txt"
+            },
+            {
+                id: 12,
+                title: "Episode 11",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 11.txt"
+            },
+            {
+                id: 13,
+                title: "Episode 12",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 12.txt"
+            },
+            {
+                id: 14,
+                title: "Episode 13",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 13.txt"
+            },
+            {
+                id: 15,
+                title: "Episode 14",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 14.txt"
+            },
+            {
+                id: 16,
+                title: "Episode 15",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 15.txt"
+            },
+            {
+                id: 17,
+                title: "Episode 16",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 16.txt"
+            },
+            {
+                id: 18,
+                title: "Episode 17",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 17.txt"
+            },
+            {
+                id: 19,
+                title: "Episode 18",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 18.txt"
+            },
+            {
+                id: 20,
+                title: "Episode 19",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 19.txt"
+            },
+            {
+                id: 21,
+                title: "Episode 20",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 20.txt"
+            },
+            {
+                id: 22,
+                title: "Episode 21",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 21.txt"
+            },
+            {
+                id: 23,
+                title: "Episode 22",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 22.txt"
+            },
+            {
+                id: 24,
+                title: "Episode 23",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 23.txt"
+            },
+            {
+                id: 25,
+                title: "Episode 24",
+                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 24.txt"
+            }
+        ]
+    },
+    {
+        id: 2,
         title: "පිය මනිමු මල් මාවතේ",
         author: "Tharuka Sewwandi",
         genre: "Romance",
         coverImg: "img/පිය මනිමු මල් මාවතේ.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        publishDate: "2023-10-01",
         Episodes: 28,
         episodes: [
             {
@@ -119,53 +256,36 @@ const novels = [
         ]
     },
     {
-        id: 2,
-        title: "ලංවී හදට රහසින්",
-        author: "Tharuka Sewwandi",
-        genre: "Romance",
-        coverImg: "img/ලංවී හදට රහසින්.jpg",
-        shortDescription: "A passionate love story set in the city of lights.",
-        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 28,
-        episodes: [
-            {
-                id: 1,
-                title: "Intro",
-                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 01.txt"
-            }
-        ]
-    },
-    {
         id: 3,
-        title: "ස්නේහ කිරණක්",
-        author: "Tharuka Sewwandi",
-        genre: "Romance",
-        coverImg: "img/ස්නේහ කිරණ.jpg",
-        shortDescription: "A passionate love story set in the city of lights.",
-        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 28,
-        episodes: [
-            {
-                id: 1,
-                title: "Intro",
-                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 01.txt"
-            }
-        ]
-    },
-    {
-        id: 4,
         title: "මගේ සඳ නුඹ",
         author: "Tharuka Sewwandi",
         genre: "Romance",
         coverImg: "img/මගේ සඳ නුඹ.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 28,
+        Episodes: 40,
         episodes: [
             {
                 id: 1,
                 title: "Intro",
-                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 01.txt"
+                txtUrl: "Novels/මගේ සඳ නුඹ/Introduction.txt"
+            }
+        ]
+    },
+    {
+        id: 4,
+        title: "නුඹ දුරද තවම මට",
+        author: "Tharuka Sewwandi",
+        genre: "Romance",
+        coverImg: "img/නුඹ දුරද තවම මට.jpg",
+        shortDescription: "A passionate love story set in the city of lights.",
+        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
+        Episodes: 80,
+        episodes: [
+            {
+                id: 1,
+                title: "Intro",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Introduction.txt"
             }
         ]
     }

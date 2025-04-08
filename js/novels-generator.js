@@ -4,8 +4,8 @@
 const upcomingNovels = [
     {
         id: 1,
-        title: "පිය මනිමු මල් මාවතේ",
-        image: "img/පිය මනිමු මල් මාවතේ.jpg",
+        title: "ස්නේහ කිරණක්",
+        image: "img/ස්නේහ කිරණ.jpg",
         releaseDate: "June 12, 2025",
         description: "A tale of forbidden love between a renowned pianist and a mysterious writer who shares her deepest secrets only through anonymous letters.",
         genres: ["Romance"]
