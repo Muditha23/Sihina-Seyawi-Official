@@ -1,0 +1,60 @@
+/* Episode Cards Styling */
+.episode-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.episode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.episode-number {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Text Viewer Styling */
+#txtContent {
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+}
+
+#txtContent p {
+    margin-bottom: 1rem;
+}
+
+/* Transitions */
+.modal-container, #txtViewerModal > div:last-child {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dark Mode Additions */
+.dark-mode #txtContent {
+    color: #e2e8f0;
+}
+
+.dark-mode .episode-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .episode-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+#txtViewerContainer {
+    scrollbar-width: thin;
+    scrollbar-color: #6b728000 #e5e7eb00;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar Styling */
+#Scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #6b728000 #e5e7eb00;
+    scroll-behavior: smooth;
+}

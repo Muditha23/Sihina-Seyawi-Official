@@ -14,72 +14,107 @@ const novels = [
             {
                 id: 1,
                 title: "Intro",
-                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 01.txt"
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Introduction.txt"
             },
             {
                 id: 2,
+                title: "Episode 01",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 01.txt"
+            },
+            {
+                id: 3,
                 title: "Episode 02",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 02.txt"
             },
             {
-                id: 3,
+                id: 4,
                 title: "Episode 03",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 03.txt"
             },
             {
-                id: 4,
+                id: 5,
                 title: "Episode 04",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 04.txt"
             },
             {
-                id: 5,
+                id: 6,
                 title: "Episode 05",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 05.txt"
             },
             {
-                id: 6,
+                id: 7,
                 title: "Episode 06",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 06.txt"
             },
             {
-                id: 7,
+                id: 8,
                 title: "Episode 07",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 07.txt"
             },
             {
-                id: 8,
+                id: 9,
                 title: "Episode 08",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 08.txt"
             },
             {
-                id: 9,
+                id: 10,
                 title: "Episode 09",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 09.txt"
             },
             {
-                id: 10,
+                id: 11,
                 title: "Episode 10",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 10.txt"
             },
             {
-                id: 11,
+                id: 12,
                 title: "Episode 11",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 11.txt"
             },
             {
-                id: 12,
+                id: 13,
                 title: "Episode 12",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 12.txt"
             },
             {
-                id: 13,
+                id: 14,
                 title: "Episode 13",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 13.txt"
             },
             {
-                id: 14,
+                id: 15,
                 title: "Episode 14",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 14.txt"
+            },
+            {
+                id: 16,
+                title: "Episode 15",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 15.txt"
+            },
+            {
+                id: 17,
+                title: "Episode 16",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 16.txt"
+            },
+            {
+                id: 18,
+                title: "Episode 17",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 17.txt"
+            },
+            {
+                id: 19,
+                title: "Episode 18",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 18.txt"
+            },
+            {
+                id: 20,
+                title: "Episode 19",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 19.txt"
+            },
+            {
+                id: 21,
+                title: "Episode 20",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 20.txt"
             }
         ]
     },
@@ -186,7 +221,7 @@ function generateNovelCards() {
         card.dataset.novelId = novel.id;
         
         card.innerHTML = `
-            <div class="relative overflow-hidden rounded-t-lg h-94">
+            <div class="relative overflow-hidden scrollbar-hide rounded-t-lg h-94">
                 <img src="${novel.coverImg}" alt="${novel.title}" class="w-full h-94 object-cover transition-transform duration-700 hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                     <span class="text-white font-medium px-3 py-1 rounded-full text-sm">${novel.genre}</span>
