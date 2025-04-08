@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Novels Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="Css/Addtional.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+
+        :root {
+            --primary: #f9dce7;
+            --secondary: #d4e4fb;
+            --accent: #f2c4c4;
+            --text: #5a4a56;
+            --light-bg: #fdf6f9;
+            --dark-bg: #2d232e;
+            --dark-text: #e6d7e0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .novel-card {
+            background: linear-gradient(145deg, #fff, #f3f3f3);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .novel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(234, 132, 178, 0.15);
+        }
+
+        .dark-mode .novel-card {
+            background: linear-gradient(145deg, #3a2e3b, #2d232e);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            opacity: 0.4;
+            border-radius: 30% 70% 70% 30% / 30% 52% 48% 70%;
+            pointer-events: none;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0.4;
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f8bfd5, #e28fb3);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 15px rgba(226, 143, 179, 0.4);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e28fb3, #f8bfd5);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+
+        .modal-overlay {
+            background-color: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-container {
+            background: linear-gradient(145deg, #fff, #fbf4f7);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode .modal-container {
+            background: linear-gradient(145deg, #3a2e3b, #2d232e);
+        }
+
+        .pdf-container {
+            background: linear-gradient(145deg, #f8f8f8, #ffffff);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .pdf-container {
+            background: linear-gradient(145deg, #282028, #1e181f);
+        }
+
+        /* PDF Viewer Styles */
+        .pdf-toolbar {
+            background: linear-gradient(135deg, #f2d1dd, #e9c7d2);
+            backdrop-filter: blur(8px);
+        }
+
+        .dark-mode .pdf-toolbar {
+            background: linear-gradient(135deg, #3a2e3b, #2d232e);
+        }
+
+        .page-nav-btn {
+            transition: all 0.3s ease;
+        }
+
+        .page-nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dark mode navigation styles */
+        .dark-mode .navbar {
+            background-color: var(--dark-bg);
+            opacity: 0.8;
+        }
+
+        .dark-mode .navbar a {
+            color: var(--dark-text);
+        }
+
+        .dark-mode .navbar a:hover {
+            color: var(--primary);
+        }
+
+        .dark-mode #themeToggle,
+        .dark-mode #mobileMenuToggle {
+            color: var(--dark-text);
+        }
+
+        .dark-mode #mobileMenu {
+            background-color: var(--dark-bg);
+        }
+
+        .dark-mode .filter-button {
+            background-color: #3a2e3b;
+            color: var(--primary);
+        }
+
+        .dark-mode .filter-button:hover {
+            background-color: #4a3c4b;
+        }
+
+        /* Ensure text is visible in dark mode */
+        .dark-mode .text-gray-600 {
+            color: #d1c1d0;
+        }
+
+        .dark-mode .text-gray-500 {
+            color: #c0b0bf;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav
+        class="navbar fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md shadow-sm z-40 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="flex items-center">
+                    <span class="text-2xl font-serif font-bold text-pink-600">Romantic Tales</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="font-serif text-lg text-pink-600 hover:text-pink-800 transition">Home</a>
+                    <a href="Novels.html"
+                        class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Novels</a>
+                    <a href="Upcoming Novels.html"
+                        class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Upcoming</a>
+                    <a href="Reviews - Romantic Novel.html"
+                        class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Reviews</a>
+                    <button id="themeToggle" class="text-gray-600 hover:text-pink-600 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation Toggle -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuToggle" class="text-gray-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu (Hidden by default) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white bg-opacity-95 transition-all duration-300">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="index.html"
+                    class="font-serif text-lg text-pink-600 hover:text-pink-800 py-2 transition">Home</a>
+                <a href="Novels.html"
+                    class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Novels</a>
+                <a href="Upcoming Novels.html"
+                    class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Upcoming</a>
+                <a href="Reviews - Romantic Novel.html"
+                    class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Reviews</a>
+                <div class="flex items-center py-2">
+                    <span class="text-gray-600 mr-3">Theme:</span>
+                    <button id="mobileThemeToggle" class="text-gray-600 hover:text-pink-600 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="h-16 w-full bg-transparent"></div>
+
+    <!-- Floating Petals Animation -->
+    <div class="petals-container overflow-hidden absolute top-0 left-0 w-full h-full pointer-events-none"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 relative">
+        <!-- Page Title with fade-in animation -->
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 opacity-0" id="pageTitle">
+            Romantic Novel Collection
+        </h1>
+
+        <div class="w-24 h-1 bg-gradient-to-r from-pink-300 via-purple-200 to-blue-200 mx-auto mb-12 rounded-full opacity-0"
+            id="titleDivider"></div>
+
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10 opacity-0" id="filterControls">
+            <button
+                class="filter-button px-6 py-2 rounded-full bg-white text-pink-500 hover:bg-pink-50 transition-all shadow-md active">All
+                Novels</button>
+            <button
+                class="filter-button px-6 py-2 rounded-full bg-white text-pink-500 hover:bg-pink-50 transition-all shadow-md">Romance</button>
+            <button
+                class="filter-button px-6 py-2 rounded-full bg-white text-pink-500 hover:bg-pink-50 transition-all shadow-md">Drama</button>
+            <button
+                class="filter-button px-6 py-2 rounded-full bg-white text-pink-500 hover:bg-pink-50 transition-all shadow-md">Fantasy</button>
+        </div>
+
+        <!-- Novels Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16" id="novelsGrid">
+            <!-- Novel cards will be generated here -->
+        </div>
+
+        <!-- Novel Detail Modal with Episodes -->
+        <div id="novelModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0 hidden">
+            <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50"></div>
+
+            <div
+                class="modal-container w-full max-w-4xl max-h-[90vh] overflow-hidden z-10 relative bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+                <!-- Modal Content -->
+                <div class="flex flex-col md:flex-row h-full max-h-[90vh] overflow-hidden">
+                    <!-- Book Cover Section -->
+                    <div
+                        class="w-full md:w-2/5 p-6 flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+                        <div
+                            class="relative w-56 h-80 rounded-lg overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img id="modalBookCover" src="/api/placeholder/300/450" alt="Book Cover"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Book Details Section -->
+                    <div id="Scroll" class="w-full md:w-3/5 p-6 overflow-y-auto flex flex-col">
+                        <button id="closeModal"
+                            class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <h2 id="modalBookTitle" class="text-2xl md:text-3xl font-bold mb-2">Book Title</h2>
+                        <p id="modalBookAuthor" class="text-sm italic mb-4">By Author Name</p>
+
+                        <div class="flex items-center mb-4">
+                            <span id="modalBookGenre"
+                                class="px-3 py-1 bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200 rounded-full text-xs font-medium">Genre</span>
+                            <span id="modalBookPages"
+                                class="ml-3 text-sm text-gray-500 dark:text-gray-400">Episodes</span>
+                        </div>
+
+                        <p id="modalBookDescription" class="mb-6">Book description goes here.</p>
+
+                        <!-- Episodes Container -->
+                        <div id="episodesContainer" class="mb-6">
+                            <!-- Episode cards will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Viewer Modal with Episode Navigation -->
+        <div id="txtViewerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+            <div class="modal-overlay absolute inset-0 bg-black bg-opacity-75"></div>
+
+            <div
+                class="w-full max-w-4xl max-h-[90vh] bg-white dark:bg-gray-800 rounded-lg shadow-xl z-10 flex flex-col">
+                <!-- Viewer Header -->
+                <div
+                    class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-white dark:bg-gray-800">
+                    <div class="flex items-center">
+                        <button id="backToNovelBtn"
+                            class="mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </button>
+                        <h2 id="txtTitle" class="text-xl font-bold truncate text-gray-800 dark:text-gray-100">Episode
+                            Title</h2>
+                    </div>
+                    <button id="closeTxtViewer"
+                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Viewer Controls -->
+                <div
+                    class="p-2 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
+                    <div class="flex items-center space-x-4">
+                        <!-- Page Navigation -->
+                        <div class="flex items-center space-x-2">
+                            <button id="prevPageBtn"
+                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <span id="pageCounter" class="text-sm text-gray-700 dark:text-gray-300">1 / 10</span>
+                            <button id="nextPageBtn"
+                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Font Size Controls -->
+                        <div class="flex items-center space-x-2">
+                            <button id="decreaseFontBtn"
+                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 12H4" />
+                                </svg>
+                            </button>
+                            <span class="text-sm text-gray-700 dark:text-gray-300">Font</span>
+                            <button id="increaseFontBtn"
+                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <!-- Episode Navigation -->
+                        <div class="flex items-center space-x-2">
+                            <button id="prevEpisodeBtn"
+                                class="px-2 py-1 rounded text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800">
+                                Prev Episode
+                            </button>
+                            <button id="nextEpisodeBtn"
+                                class="px-2 py-1 rounded text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800">
+                                Next Episode
+                            </button>
+                        </div>
+
+                        <!-- Fullscreen Toggle -->
+                        <button id="fullscreenBtn"
+                            class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text Content Area -->
+                <div id="txtViewerContainer" class="flex-grow overflow-y-auto p-6 bg-white dark:bg-gray-800"
+                    style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+                    <div id="txtContent" class="max-w-none text-gray-800 dark:text-gray-100" 
+                        oncontextmenu="return false;" 
+                        onselectstart="return false"
+                        ondragstart="return false"
+                        oncopy="return false">
+                        <!-- Text content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 transition-theme">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-serif font-semibold mb-4">Romantic Tales</h3>
+                    <p class="text-gray-400 mb-4">Immerse yourself in stories of love, passion, and human connection.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i
+                                class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-serif font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400 transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400 transition">Novels</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400 transition">Upcoming Releases</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-pink-400 transition">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-serif font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2 text-pink-400"></i> mudithakaushalya57@gmail.com</li>
+                        <li><i class="fas fa-phone mr-2 text-pink-400"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 Romantic Tales. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/rating.js"></script>
+    <script src="js/Novel.js"></script>
+</body>
+</html>
