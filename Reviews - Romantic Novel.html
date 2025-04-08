@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Romantic Novel Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap');
+        
+        :root {
+            --primary-color: #f8c8dc; /* soft pink */
+            --secondary-color: #e2f0fe; /* gentle blue */
+            --accent-color: #f9e9d6; /* cream */
+            --text-color: #4a4a4a;
+            --light-text: #857e7b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdf6f9 0%, #f7f5fd 100%);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-button {
+            background: linear-gradient(135deg, #f8c8dc 0%, #e2f0fe 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(248, 200, 220, 0.2);
+        }
+        
+        .gradient-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(248, 200, 220, 0.4);
+        }
+        
+        .form-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input {
+            border: 1px solid #e6e6e6;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(248, 200, 220, 0.3);
+            outline: none;
+        }
+        
+        .success-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .heart {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            position: absolute;
+            transform: rotate(-45deg);
+            border-radius: 10px;
+            opacity: 0.1;
+        }
+        
+        .heart:before, .heart:after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: 20px;
+        }
+        
+        /* Improved Dark Mode */
+        .dark-mode {
+            background: linear-gradient(135deg, #232331 0%, #1a1a25 100%);
+            color: #e6e6e6;
+        }
+        
+        .dark-mode .form-container {
+            background: rgba(40, 40, 55, 0.85);
+            border: 1px solid rgba(70, 70, 90, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+        
+        .dark-mode .form-input {
+            background: rgba(55, 55, 70, 0.9);
+            border: 1px solid #45455a;
+            color: #e6e6e6;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #b5b5c3;
+        }
+        
+        .dark-mode .navbar {
+            background-color: rgba(40, 40, 55, 0.9) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-mode .gradient-button {
+            background: linear-gradient(135deg, #a87c94 0%, #7396b8 100%);
+            color: #f0f0f0 !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode .gradient-button:hover {
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dark-mode #mobileMenu {
+            background-color: rgba(40, 40, 55, 0.95) !important;
+        }
+        
+        .dark-mode .form-input:focus {
+            border-color: #a87c94;
+            box-shadow: 0 0 0 3px rgba(168, 124, 148, 0.3);
+        }
+        
+        /* Dark mode review cards */
+        .dark-mode .bg-white {
+            background-color: rgba(50, 50, 65, 0.8) !important;
+        }
+        
+        /* Animation for decorative elements */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(-15px) rotate(-45deg); }
+            100% { transform: translateY(0) rotate(-45deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Area for Navigation -->
+    <div class="h-16">
+        <!-- Navigation -->
+        <nav class="navbar fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md shadow-sm z-40 transition-all duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <a href="#" class="flex items-center">
+                        <span class="text-2xl font-serif font-bold gradient-text">Romantic Tales</span>
+                    </a>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="font-serif text-lg text-pink-600 hover:text-pink-800 transition">Home</a>
+                        <a href="Novels.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Novels</a>
+                        <a href="Upcoming Novels.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Upcoming</a>
+                        <a href="Reviews - Romantic Novel.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Reviews</a>
+                        <button id="dark-mode-toggle" class="text-gray-600 hover:text-pink-600 transition">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile Navigation Toggle -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobileMenuToggle" class="text-gray-600">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu (Hidden by default) -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white bg-opacity-95 transition-all duration-300">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                    <a href="index.html" class="font-serif text-lg text-pink-600 hover:text-pink-800 py-2 transition">Home</a>
+                    <a href="Novels.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Novels</a>
+                    <a href="Upcoming Novels.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Upcoming</a>
+                    <a href="Reviews - Romantic Novel.html" class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Reviews</a>
+                    <div class="flex items-center py-2">
+                        <span class="text-gray-600 mr-3">Theme:</span>
+                        <button id="dark-mode-toggle-mobile" class="text-gray-600 hover:text-pink-600 transition">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="heart floating-shape animate-float" style="top: 10%; left: 5%;"></div>
+    <div class="heart floating-shape animate-float" style="top: 15%; right: 8%; animation-delay: 2s;"></div>
+    <div class="heart floating-shape animate-float" style="bottom: 20%; left: 15%; animation-delay: 4s;"></div>
+    <div class="heart floating-shape animate-float" style="bottom: 30%; right: 12%; animation-delay: 1s;"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mb-16">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-animate="fadeIn">Share Your Thoughts</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-animate="fadeIn">We'd love to hear what you think about our romantic novels. Your reviews help us create better stories for you.</p>
+        </div>
+
+        <div class="max-w-xl mx-auto" data-animate="fadeIn">
+            <!-- Form Container -->
+            <div class="form-container rounded-xl p-6 md:p-8">
+                <form id="reviewForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="Jane Doe">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-2">Your Email</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="jane@example.com">
+                    </div>
+                    
+                    <div>
+                        <label for="novel" class="block text-sm font-medium mb-2">Novel Title</label>
+                        <select id="novel" name="novel" class="form-input w-full px-4 py-3 rounded-lg">
+                            <option value="Love in Paris">Love in Paris</option>
+                            <option value="Midnight Whispers">Midnight Whispers</option>
+                            <option value="Autumn Hearts">Autumn Hearts</option>
+                            <option value="Forever Yours">Forever Yours</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="rating" class="block text-sm font-medium mb-2">Rating</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="hidden" id="rating" name="rating" value="5">
+                            <div class="flex space-x-1" id="starContainer">
+                                <button type="button" class="text-2xl star-btn text-yellow-500" data-value="1">★</button>
+                                <button type="button" class="text-2xl star-btn text-yellow-500" data-value="2">★</button>
+                                <button type="button" class="text-2xl star-btn text-yellow-500" data-value="3">★</button>
+                                <button type="button" class="text-2xl star-btn text-yellow-500" data-value="4">★</button>
+                                <button type="button" class="text-2xl star-btn text-yellow-500" data-value="5">★</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="review" class="block text-sm font-medium mb-2">Your Review</label>
+                        <textarea id="review" name="review" rows="5" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="Share your thoughts about the novel..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="gradient-button w-full py-3 px-6 rounded-lg font-medium text-gray-800 focus:outline-none">
+                            Send Review
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Popup Message -->
+                <div id="popupMessage" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" style="display: none;">
+                    <div class="bg-white rounded-lg p-8 max-w-md w-full form-container">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2">Thank You!</h3>
+                            <p class="text-gray-600 mb-6">Your review has been submitted successfully.</p>
+                            <button id="closePopup" class="gradient-button py-2 px-6 rounded-lg font-medium text-gray-800 focus:outline-none">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="mt-16 max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+                What Our Readers Say
+            </span>
+            </h2>
+            
+            <!-- Reviews Grid Container -->
+            <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+            <!-- Loading State -->
+            <div class="col-span-full text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-pink-500"></div>
+                <p class="text-gray-500 mt-4">Loading wonderful reviews...</p>
+            </div>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="absolute -z-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div class="absolute top-10 right-10 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-10 left-20 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+            </div>
+
+            <!-- No Reviews State -->
+            <div id="noReviews" class="hidden text-center py-16">
+            <div class="mb-6">
+                <i class="fas fa-book-open text-4xl text-pink-400"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">No Reviews Yet</h3>
+            <p class="text-gray-600">Be the first to share your thoughts!</p>
+            <button onclick="document.getElementById('reviewForm').scrollIntoView({behavior: 'smooth'})" 
+                class="mt-4 gradient-button py-2 px-6 rounded-full text-sm hover:scale-105 transition-transform">
+                Write a Review
+            </button>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-8">
+            <button id="loadMoreBtn" 
+                class="gradient-button py-3 px-8 rounded-full text-sm font-medium 
+                       hover:scale-105 transition-transform hidden">
+                Load More Reviews
+            </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Area for Footer (already implemented) -->
+    <div class="h-16">
+        <!-- Footer will be added here -->
+    </div>
+
+    <script src="js/importnt.js"></script>
+
+    <script>
+        // Properly initialized Dark Mode and mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode functionality
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+            const body = document.body;
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+            
+            // Initialize dark mode based on saved preference
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                updateDarkModeIcons(true);
+            }
+            
+            function toggleDarkMode() {
+                body.classList.toggle('dark-mode');
+                isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                updateDarkModeIcons(isDarkMode);
+            }
+            
+            function updateDarkModeIcons(isDark) {
+                const iconClass = isDark ? 'fa-sun' : 'fa-moon';
+                if (darkModeToggle) {
+                    darkModeToggle.innerHTML = `<i class="fas ${iconClass}"></i>`;
+                }
+                if (darkModeToggleMobile) {
+                    darkModeToggleMobile.innerHTML = `<i class="fas ${iconClass}"></i>`;
+                }
+            }
+            
+            // Add event listeners for dark mode toggles
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', toggleDarkMode);
+            }
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+            }
+            
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        // Show menu with animation
+                        mobileMenu.classList.remove('hidden');
+                        gsap.fromTo(mobileMenu, 
+                            { opacity: 0, height: 0 }, 
+                            { opacity: 1, height: 'auto', duration: 0.3, ease: 'power2.out' }
+                        );
+                    } else {
+                        // Hide menu with animation
+                        gsap.to(mobileMenu, {
+                            opacity: 0, 
+                            height: 0, 
+                            duration: 0.3,
+                            ease: 'power2.in',
+                            onComplete: () => {
+                                mobileMenu.classList.add('hidden');
+                                mobileMenu.style.height = 'auto';
+                                mobileMenu.style.opacity = 1;
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Star rating functionality
+            const starButtons = document.querySelectorAll('.star-btn');
+            const ratingInput = document.getElementById('rating');
+            
+            starButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const value = this.dataset.value;
+                    ratingInput.value = value;
+                    
+                    // Update star colors
+                    starButtons.forEach(star => {
+                        if (star.dataset.value <= value) {
+                            star.classList.add('text-yellow-500');
+                            star.classList.remove('text-gray-300');
+                        } else {
+                            star.classList.remove('text-yellow-500');
+                            star.classList.add('text-gray-300');
+                        }
+                    });
+                });
+            });
+            
+
+            // Handle form submission
+            const form = document.getElementById('reviewForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // In a real implementation, you would send this data to the server
+                // For this demo, we'll just show the success message
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                console.log('Review data:', data);
+                
+                // In a real implementation, you would send an email to mudithakaushalya57@gmail.com
+                // Email sending would happen on the server side
+                
+                // Show success message
+                document.querySelector('[x-data]').__x.$data.success = true;
+                
+                // Reset form
+                form.reset();
+                
+                // Reset star rating
+                stars.forEach(star => {
+                    star.style.color = '#FFD700';
+                });
+                ratingInput.value = 5;
+            });
+            
+            
+            // Animate elements on page load
+            const animateElements = document.querySelectorAll('[data-animate="fadeIn"]');
+            
+            gsap.from(animateElements, {
+                opacity: 0,
+                y: 30,
+                stagger: 0.2,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
