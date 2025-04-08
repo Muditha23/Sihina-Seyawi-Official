@@ -409,6 +409,11 @@ const novels = [
                 id: 80,
                 title: "Episode 79",
                 txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 79.txt"
+            },
+            {
+                id: 81,
+                title: "Episode 80",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 80.txt"
             }
         ]
     },
@@ -543,6 +548,46 @@ const novels = [
                 id: 21,
                 title: "Episode 20",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 20.txt"
+            },
+            {
+                id: 22,
+                title: "Episode 21",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 21.txt"
+            },
+            {
+                id: 23,
+                title: "Episode 22",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 22.txt"
+            },
+            {
+                id: 24,
+                title: "Episode 23",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 23.txt"
+            },
+            {
+                id: 25,
+                title: "Episode 24",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 24.txt"
+            },
+            {
+                id: 26,
+                title: "Episode 25",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 25.txt"
+            },
+            {
+                id: 27,
+                title: "Episode 26",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 26.txt"
+            },
+            {
+                id: 28,
+                title: "Episode 27",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 27.txt"
+            },
+            {
+                id: 29,
+                title: "Episode 28",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 28.txt"
             }
         ]
     },
