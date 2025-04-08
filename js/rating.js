@@ -275,7 +275,9 @@ class RatingSystem {
     // For demo purposes, generate/retrieve a persistent anonymous ID
     let userId = localStorage.getItem('anonymousUserId');
     if (!userId) {
-      userId = 'user_' + Math.random().toString(36).substring(2, 15);
+      const array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+      userId = 'user_' + array[0].toString(36).substring(2, 15);
       localStorage.setItem('anonymousUserId', userId);
     }
     return userId;
