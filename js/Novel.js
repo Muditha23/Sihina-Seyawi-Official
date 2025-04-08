@@ -20,6 +20,66 @@ const novels = [
                 id: 2,
                 title: "Episode 02",
                 txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 02.txt"
+            },
+            {
+                id: 3,
+                title: "Episode 03",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 03.txt"
+            },
+            {
+                id: 4,
+                title: "Episode 04",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 04.txt"
+            },
+            {
+                id: 5,
+                title: "Episode 05",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 05.txt"
+            },
+            {
+                id: 6,
+                title: "Episode 06",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 06.txt"
+            },
+            {
+                id: 7,
+                title: "Episode 07",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 07.txt"
+            },
+            {
+                id: 8,
+                title: "Episode 08",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 08.txt"
+            },
+            {
+                id: 9,
+                title: "Episode 09",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 09.txt"
+            },
+            {
+                id: 10,
+                title: "Episode 10",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 10.txt"
+            },
+            {
+                id: 11,
+                title: "Episode 11",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 11.txt"
+            },
+            {
+                id: 12,
+                title: "Episode 12",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 12.txt"
+            },
+            {
+                id: 13,
+                title: "Episode 13",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 13.txt"
+            },
+            {
+                id: 14,
+                title: "Episode 14",
+                txtUrl: "Novels/පිය මනිමු මල් මවතේ/Episode 14.txt"
             }
         ]
     },
