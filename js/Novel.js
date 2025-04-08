@@ -2,144 +2,435 @@
 const novels = [
     {
         id: 1,
-        title: "ලං වී හදට රහසින්",
+        title: "නුඹ දුරද තවම මට",
         author: "Tharuka Sewwandi",
         genre: "Romance",
-        coverImg: "img/ලංවී හදට රහසින්.jpg",
+        coverImg: "img/නුඹ දුරද තවම මට.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        publishDate: "2023-10-01",
-        Episodes: 24,
+        Episodes: 80,
         episodes: [
             {
                 id: 1,
                 title: "Intro",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Introduction.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Introduction.txt"
             },
             {
                 id: 2,
                 title: "Episode 01",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 01.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 01.txt"
             },
             {
                 id: 3,
                 title: "Episode 02",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 02.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 02.txt"
             },
             {
                 id: 4,
                 title: "Episode 03",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 03.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 03.txt"
             },
             {
                 id: 5,
                 title: "Episode 04",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 04.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 04.txt"
             },
             {
                 id: 6,
                 title: "Episode 05",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 05.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 05.txt"
             },
             {
                 id: 7,
                 title: "Episode 06",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 06.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 06.txt"
             },
             {
                 id: 8,
                 title: "Episode 07",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 07.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 07.txt"
             },
             {
                 id: 9,
                 title: "Episode 08",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 08.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 08.txt"
             },
             {
                 id: 10,
                 title: "Episode 09",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 09.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 09.txt"
             },
             {
                 id: 11,
                 title: "Episode 10",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 10.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 10.txt"
             },
             {
                 id: 12,
                 title: "Episode 11",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 11.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 11.txt"
             },
             {
                 id: 13,
                 title: "Episode 12",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 12.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 12.txt"
             },
             {
                 id: 14,
                 title: "Episode 13",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 13.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 13.txt"
             },
             {
                 id: 15,
                 title: "Episode 14",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 14.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 14.txt"
             },
             {
                 id: 16,
                 title: "Episode 15",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 15.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 15.txt"
             },
             {
                 id: 17,
                 title: "Episode 16",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 16.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 16.txt"
             },
             {
                 id: 18,
                 title: "Episode 17",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 17.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 17.txt"
             },
             {
                 id: 19,
                 title: "Episode 18",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 18.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 18.txt"
             },
             {
                 id: 20,
                 title: "Episode 19",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 19.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 19.txt"
             },
             {
                 id: 21,
                 title: "Episode 20",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 20.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 20.txt"
             },
             {
                 id: 22,
                 title: "Episode 21",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 21.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 21.txt"
             },
             {
                 id: 23,
                 title: "Episode 22",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 22.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 22.txt"
             },
             {
                 id: 24,
                 title: "Episode 23",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 23.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 23.txt"
             },
             {
                 id: 25,
                 title: "Episode 24",
-                txtUrl: "Novels/ලංවී හදට රහසින්/Episode 24.txt"
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 24.txt"
+            },
+            {
+                id: 26,
+                title: "Episode 25",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 25.txt"
+            },
+            {
+                id: 27,
+                title: "Episode 26",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 26.txt"
+            },
+            {
+                id: 28,
+                title: "Episode 27",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 27.txt"
+            },
+            {
+                id: 29,
+                title: "Episode 28",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 28.txt"
+            },
+            {
+                id: 30,
+                title: "Episode 29",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 29.txt"
+            },
+            {
+                id: 31,
+                title: "Episode 30",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 30.txt"
+            },
+            {
+                id: 32,
+                title: "Episode 31",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 31.txt"
+            },
+            {
+                id: 33,
+                title: "Episode 32",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 32.txt"
+            },
+            {
+                id: 34,
+                title: "Episode 33",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 33.txt"
+            },
+            {
+                id: 35,
+                title: "Episode 34",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 34.txt"
+            },
+            {
+                id: 36,
+                title: "Episode 35",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 35.txt"
+            },
+            {
+                id: 37,
+                title: "Episode 36",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 36.txt"
+            },
+            {
+                id: 38,
+                title: "Episode 37",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 37.txt"
+            },
+            {
+                id: 39,
+                title: "Episode 38",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 38.txt"
+            },
+            {
+                id: 40,
+                title: "Episode 39",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 39.txt"
+            },
+            {
+                id: 41,
+                title: "Episode 40",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 40.txt"
+            },
+            {
+                id: 42,
+                title: "Episode 41",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 41.txt"
+            },
+            {
+                id: 43,
+                title: "Episode 42",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 42.txt"
+            },
+            {
+                id: 44,
+                title: "Episode 43",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 43.txt"
+            },
+            {
+                id: 45,
+                title: "Episode 44",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 44.txt"
+            },
+            {
+                id: 46,
+                title: "Episode 45",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 45.txt"
+            },
+            {
+                id: 47,
+                title: "Episode 46",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 46.txt"
+            },
+            {
+                id: 48,
+                title: "Episode 47",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 47.txt"
+            },
+            {
+                id: 49,
+                title: "Episode 48",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 48.txt"
+            },
+            {
+                id: 50,
+                title: "Episode 49",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 49.txt"
+            },
+            {
+                id: 51,
+                title: "Episode 50",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 50.txt"
+            },
+            {
+                id: 52,
+                title: "Episode 51",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 51.txt"
+            },
+            {
+                id: 53,
+                title: "Episode 52",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 52.txt"
+            },
+            {
+                id: 54,
+                title: "Episode 53",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 53.txt"
+            },
+            {
+                id: 55,
+                title: "Episode 54",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 54.txt"
+            },
+            {
+                id: 56,
+                title: "Episode 55",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 55.txt"
+            },
+            {
+                id: 57,
+                title: "Episode 56",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 56.txt"
+            },
+            {
+                id: 58,
+                title: "Episode 57",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 57.txt"
+            },
+            {
+                id: 59,
+                title: "Episode 58",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 58.txt"
+            },
+            {
+                id: 60,
+                title: "Episode 59",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 59.txt"
+            },
+            {
+                id: 61,
+                title: "Episode 60",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 60.txt"
+            },
+            {
+                id: 62,
+                title: "Episode 61",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 61.txt"
+            },
+            {
+                id: 63,
+                title: "Episode 62",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 62.txt"
+            },
+            {
+                id: 64,
+                title: "Episode 63",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 63.txt"
+            },
+            {
+                id: 65,
+                title: "Episode 64",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 64.txt"
+            },
+            {
+                id: 66,
+                title: "Episode 65",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 65.txt"
+            },
+            {
+                id: 67,
+                title: "Episode 66",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 66.txt"
+            },
+            {
+                id: 68,
+                title: "Episode 67",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 67.txt"
+            },
+            {
+                id: 69,
+                title: "Episode 68",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 68.txt"
+            },
+            {
+                id: 70,
+                title: "Episode 69",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 69.txt"
+            },
+            {
+                id: 71,
+                title: "Episode 70",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 70.txt"
+            },
+            {
+                id: 72,
+                title: "Episode 71",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 71.txt"
+            },
+            {
+                id: 73,
+                title: "Episode 72",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 72.txt"
+            },
+            {
+                id: 74,
+                title: "Episode 73",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 73.txt"
+            },
+            {
+                id: 75,
+                title: "Episode 74",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 74.txt"
+            },
+            {
+                id: 76,
+                title: "Episode 75",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 75.txt"
+            },
+            {
+                id: 77,
+                title: "Episode 76",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 76.txt"
+            },
+            {
+                id: 78,
+                title: "Episode 77",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 77.txt"
+            },
+            {
+                id: 79,
+                title: "Episode 78",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 78.txt"
+            },
+            {
+                id: 80,
+                title: "Episode 79",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 79.txt"
             }
         ]
     },
     {
         id: 2,
+        title: "මගේ සඳ නුඹ",
+        author: "Tharuka Sewwandi",
+        genre: "Romance",
+        coverImg: "img/මගේ සඳ නුඹ.jpg",
+        shortDescription: "A passionate love story set in the city of lights.",
+        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
+        Episodes: 40,
+        episodes: [
+            {
+                id: 1,
+                title: "Intro",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Introduction.txt"
+            }
+        ]
+    },
+    {
+        id: 3,
         title: "පිය මනිමු මල් මාවතේ",
         author: "Tharuka Sewwandi",
         genre: "Romance",
@@ -256,31 +547,15 @@ const novels = [
         ]
     },
     {
-        id: 3,
-        title: "මගේ සඳ නුඹ",
-        author: "Tharuka Sewwandi",
-        genre: "Romance",
-        coverImg: "img/මගේ සඳ නුඹ.jpg",
-        shortDescription: "A passionate love story set in the city of lights.",
-        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 40,
-        episodes: [
-            {
-                id: 1,
-                title: "Intro",
-                txtUrl: "Novels/මගේ සඳ නුඹ/Introduction.txt"
-            }
-        ]
-    },
-    {
         id: 4,
-        title: "නුඹ දුරද තවම මට",
+        title: "ලං වී හදට රහසින්",
         author: "Tharuka Sewwandi",
         genre: "Romance",
-        coverImg: "img/නුඹ දුරද තවම මට.jpg",
+        coverImg: "img/ලංවී හදට රහසින්.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 80,
+        publishDate: "2023-10-01",
+        Episodes: 24,
         episodes: [
             {
                 id: 1,
@@ -335,11 +610,15 @@ function generateNovelCards() {
     
     novelsGrid.innerHTML = '';
     
-    novels.forEach((novel, index) => {
+    // Create a copy of the novels array and reverse it
+    const reversedNovels = [...novels].reverse();
+    
+    reversedNovels.forEach((novel, index) => {
         const card = document.createElement('div');
         card.className = 'novel-card h-full flex flex-col opacity-0 novels-item';
         card.dataset.novelId = novel.id;
         
+        // Rest of the function remains the same
         card.innerHTML = `
             <div class="relative overflow-hidden scrollbar-hide rounded-t-lg h-94">
                 <img src="${novel.coverImg}" alt="${novel.title}" class="w-full h-94 object-cover transition-transform duration-700 hover:scale-110">
