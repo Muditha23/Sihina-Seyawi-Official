@@ -134,7 +134,7 @@ function openNovelModal(novel) {
     modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
     
     const modalContent = `
-        <div class="bg-white rounded-xl max-w-4xl w-11/12 max-h-90vh overflow-y-auto relative p-8 shadow-2xl transform transition-all">
+        <div class="bg-white rounded-xl max-w-4xl w-11/12 max-h-[90vh] overflow-y-auto scrollbar-hide relative p-8 shadow-2xl transform transition-all" style="scrollbar-width: none; -ms-overflow-style: none;">
             <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors duration-200" 
                     onclick="this.closest('.fixed').remove()">
                 <i class="fas fa-times text-2xl hover:rotate-90 transform transition-transform duration-300"></i>
