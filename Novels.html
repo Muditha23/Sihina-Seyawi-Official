@@ -19,204 +19,273 @@
     <link rel="icon" type="image/jpg" href="img/fav.png">
     <link href="https://fonts.googleapis.com/css2?family=Meddon&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
 
-        :root {
-            --primary: #f9dce7;
-            --secondary: #d4e4fb;
-            --accent: #f2c4c4;
-            --text: #5a4a56;
-            --light-bg: #fdf6f9;
-            --dark-bg: #2d232e;
-            --dark-bg-2: #291c2b;
-            --dark-text: #ffffff;
-            --dark-nav-active: #f8bfd5;
-            --dark-nav-inactive: #d4e4fb;
-        }
+:root {
+    --primary: #f9dce7;
+    --secondary: #d4e4fb;
+    --accent: #f2c4c4;
+    --text: #5a4a56;
+    --light-bg: #fdf6f9;
+    --dark-bg: #2d232e;
+    --dark-bg-2: #291c2b;
+    --dark-text: #ffffff;
+    --dark-nav-active: #f8bfd5;
+    --dark-nav-inactive: #d4e4fb;
+    --primary-dark: #db2777;
+    --primary-hover: #ec4899;
+}
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        body.dark-mode {
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
-        }
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            font-family: 'Playfair Display', serif;
-        }
+h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+}
 
-        .novel-card {
-            background: linear-gradient(145deg, #fff, #f3f3f3);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 12px;
-            overflow: hidden;
-        }
+.novel-card {
+    background: linear-gradient(145deg, #fff, #f3f3f3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
 
-        .novel-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(234, 132, 178, 0.15);
-        }
+.novel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(234, 132, 178, 0.15);
+}
 
-        .dark-mode .novel-card {
-            background: linear-gradient(145deg, #3a2e3b, #2d232e);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+.dark-mode .novel-card {
+    background: linear-gradient(145deg, #3a2e3b, #2d232e);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
 
-        .petal {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary);
-            opacity: 0.4;
-            border-radius: 30% 70% 70% 30% / 30% 52% 48% 70%;
-            pointer-events: none;
-            animation: float 10s infinite ease-in-out;
-        }
+.petal {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary);
+    opacity: 0.4;
+    border-radius: 30% 70% 70% 30% / 30% 52% 48% 70%;
+    pointer-events: none;
+    animation: float 10s infinite ease-in-out;
+}
 
-        @keyframes float {
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateY(-100px) rotate(45deg);
+        opacity: 0.4;
+    }
+}
 
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.2;
-            }
+.btn-primary {
+    background: linear-gradient(135deg, #f8bfd5, var(--primary-dark));
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
 
-            50% {
-                transform: translateY(-100px) rotate(45deg);
-                opacity: 0.4;
-            }
-        }
+.btn-primary:hover {
+    box-shadow: 0 5px 15px rgba(219, 39, 119, 0.4);
+}
 
-        .btn-primary {
-            background: linear-gradient(135deg, #f8bfd5, #e28fb3);
-            transition: all 0.3s ease;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-hover));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
 
-        .btn-primary:hover {
-            box-shadow: 0 5px 15px rgba(226, 143, 179, 0.4);
-        }
+.btn-primary:hover::after {
+    opacity: 1;
+}
 
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #e28fb3, #f8bfd5);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
+.modal-overlay {
+    background-color: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(4px);
+}
 
-        .btn-primary:hover::after {
-            opacity: 1;
-        }
+.modal-container {
+    background: linear-gradient(145deg, #fff, #fbf4f7);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
 
-        .modal-overlay {
-            background-color: rgba(10, 10, 10, 0.4);
-            backdrop-filter: blur(4px);
-        }
+.dark-mode .modal-container {
+    background: linear-gradient(145deg, #3a2e3b, #2d232e);
+}
 
-        .modal-container {
-            background: linear-gradient(145deg, #fff, #fbf4f7);
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
+.pdf-container {
+    background: linear-gradient(145deg, #f8f8f8, #ffffff);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
 
-        .dark-mode .modal-container {
-            background: linear-gradient(145deg, #3a2e3b, #2d232e);
-        }
+.dark-mode .pdf-container {
+    background: linear-gradient(145deg, #282028, #1e181f);
+}
 
-        .pdf-container {
-            background: linear-gradient(145deg, #f8f8f8, #ffffff);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
+/* PDF Viewer Styles */
+.pdf-toolbar {
+    background: linear-gradient(135deg, #f2d1dd, #e9c7d2);
+    backdrop-filter: blur(8px);
+}
 
-        .dark-mode .pdf-container {
-            background: linear-gradient(145deg, #282028, #1e181f);
-        }
+.dark-mode .pdf-toolbar {
+    background: linear-gradient(135deg, #3a2e3b, #2d232e);
+}
 
-        /* PDF Viewer Styles */
-        .pdf-toolbar {
-            background: linear-gradient(135deg, #f2d1dd, #e9c7d2);
-            backdrop-filter: blur(8px);
-        }
+.page-nav-btn {
+    transition: all 0.3s ease;
+}
 
-        .dark-mode .pdf-toolbar {
-            background: linear-gradient(135deg, #3a2e3b, #2d232e);
-        }
+.page-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
-        .page-nav-btn {
-            transition: all 0.3s ease;
-        }
+/* Navigation styles */
+.navbar a {
+    transition: color 0.3s ease;
+}
 
-        .page-nav-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+.navbar a:hover, 
+#mobileMenu a:hover {
+    color: var(--primary-dark);
+}
 
-        /* Dark mode navigation styles */
-        .dark-mode .navbar {
-            background-color: var(--dark-bg);
-            opacity: 0.9;
-        }
+/* Dark mode navigation styles */
+.dark-mode .navbar {
+    background-color: var(--dark-bg);
+    opacity: 0.9;
+}
 
-        .dark-mode .navbar a {
-            color: var(--dark-text);
-        }
+.dark-mode .navbar a {
+    color: var(--dark-text);
+}
 
-        .dark-mode .navbar a:hover {
-            color: var(--primary);
-        }
+.dark-mode .navbar a:hover {
+    color: var(--primary-dark);
+}
 
-        .dark-mode #themeToggle,
-        .dark-mode #mobileMenuToggle {
-            color: var(--dark-text);
-        }
+.dark-mode #themeToggle,
+.dark-mode #mobileMenuToggle {
+    color: var(--dark-text);
+}
 
-        .dark-mode #mobileMenu {
-            background-color: var(--dark-bg);
-        }
+.dark-mode #mobileMenu {
+    background-color: var(--dark-bg);
+}
 
-        .dark-mode .filter-button {
-            background-color: #3a2e3b;
-            color: var(--primary);
-        }
+.dark-mode .filter-button {
+    background-color: #3a2e3b;
+    color: var(--primary);
+}
 
-        .dark-mode .filter-button:hover {
-            background-color: #4a3c4b;
-        }
+.dark-mode .filter-button:hover {
+    background-color: #4a3c4b;
+}
 
-        /* Ensure text is visible in dark mode */
-        .dark-mode .text-gray-600 {
-            color: #ffffff;
-        }
+/* Ensure text is visible in dark mode */
+.dark-mode .text-gray-600 {
+    color: #ffffff;
+}
 
-        .dark-mode .text-gray-500 {
-            color: #c0b0bf;
-        }
-        .dark-mode footer {
-            background-color: var(--dark-bg-2);;
-        }
-        .dark-mode footer h3{
-            color: var(--dark-text);
-        }
+.dark-mode .text-gray-500 {
+    color: #c0b0bf;
+}
+
+.dark-mode footer {
+    background-color: var(--dark-bg-2);
+}
+
+.dark-mode footer h3 {
+    color: var(--dark-text);
+}
+
+/* Active page navigation styles */
+.navbar a[href="Novels.html"],
+#mobileMenu a[href="Novels.html"] {
+    color: var(--primary-dark);
+    font-weight: 600;
+    position: relative;
+}
+
+.navbar a[href="Novels.html"]::after,
+#mobileMenu a[href="Novels.html"]::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-dark);
+    opacity: 0.7;
+}
+
+/* Dark mode active navigation */
+.dark-mode .navbar a[href="Novels.html"],
+.dark-mode #mobileMenu a[href="Novels.html"] {
+    color: var(--primary-dark);
+}
+
+.dark-mode .navbar a[href="Novels.html"]::after,
+.dark-mode #mobileMenu a[href="Novels.html"]::after {
+    background: var(--primary-dark);
+}
+
+/* General active and hover navigation styles */
+.navbar a.active,
+#mobileMenu a.active {
+    color: var(--primary-dark);
+    font-weight: 600;
+    position: relative;
+}
+
+.navbar a.active::after,
+#mobileMenu a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-dark);
+    opacity: 0.7;
+}
+
+/* Dark mode active class */
+.dark-mode .navbar a.active,
+.dark-mode #mobileMenu a.active {
+    color: var(--primary-dark);
+}
+
+.dark-mode .navbar a.active::after,
+.dark-mode #mobileMenu a.active::after {
+    background: var(--primary-dark);
+}
     </style>
 </head>
 
@@ -234,7 +303,7 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html"
-                        class="font-serif text-lg text-pink-600 hover:text-pink-800 transition">Home</a>
+                        class="font-serif text-lg text-gray-600 hover:text-pink-800 transition">Home</a>
                     <a href="Novels.html"
                         class="font-serif text-lg text-gray-600 hover:text-pink-600 transition">Novels</a>
                     <a href="Upcoming Novels.html"
@@ -259,7 +328,7 @@
         <div id="mobileMenu" class="hidden md:hidden bg-white bg-opacity-55 transition-all duration-300">
             <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
                 <a href="index.html"
-                    class="font-serif text-lg text-pink-600 hover:text-pink-800 py-2 transition">Home</a>
+                    class="font-serif text-lg text-gray-600 hover:text-pink-800 py-2 transition">Home</a>
                 <a href="Novels.html"
                     class="font-serif text-lg text-gray-600 hover:text-pink-600 py-2 transition">Novels</a>
                 <a href="Upcoming Novels.html"

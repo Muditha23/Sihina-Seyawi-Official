@@ -612,3 +612,40 @@ function animatePageElements() {
         gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: index * 0.1 + 0.8 });
     });
 }
+
+// Theme persistence using localStorage
+function initializeTheme() {
+    // Check if theme preference exists in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+
+    // Apply saved theme or default to light
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        if (mobileThemeToggle) mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Update localStorage when theme changes
+    function updateThemeStorage() {
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // Override existing toggleTheme function
+    window.toggleTheme = function() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        const icon = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        if (themeToggle) themeToggle.innerHTML = icon;
+        if (mobileThemeToggle) mobileThemeToggle.innerHTML = icon;
+
+        updateThemeStorage();
+        applyThemeColors();
+    };
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', initializeTheme);
