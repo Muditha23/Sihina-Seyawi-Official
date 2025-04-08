@@ -322,15 +322,15 @@ function generateEpisodeCards(novel) {
         
         episodeCard.innerHTML = `
             <div class="relative w-full pt-[133%] bg-gradient-to-br from-pink-100 to-purple-200 dark:from-gray-700 dark:to-gray-800">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="episode-number text-6xl font-bold text-white opacity-50">${index + 1}</span>
+            <div class="absolute inset-0 flex items-center justify-center">
+            <span class="episode-number text-6xl font-bold text-white opacity-50"> ${index === 0 ? 'IN' : `<span class="episode-number text-6xl font-bold text-white opacity-50">${index}</span>`}
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 hover:opacity-100 transition-all duration-500 flex items-center justify-center group">
+                <div class="transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-center p-2">
+                <h4 class="font-bold text-white text-lg tracking-wide drop-shadow-lg">${episode.title}</h4>
+                <span class="text-pink-200 text-sm mt-2 inline-block">Click to Read</span>
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 hover:opacity-100 transition-all duration-500 flex items-center justify-center group">
-                    <div class="transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-center p-2">
-                        <h4 class="font-bold text-white text-lg tracking-wide drop-shadow-lg">${episode.title}</h4>
-                        <span class="text-pink-200 text-sm mt-2 inline-block">Click to Read</span>
-                    </div>
-                </div>
+            </div>
             </div>
         `;
         
