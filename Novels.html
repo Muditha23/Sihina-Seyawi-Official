@@ -226,6 +226,17 @@ h1, h2, h3, h4, h5 {
     color: var(--dark-text);
 }
 
+/* Dark mode active class */
+.dark-mode .navbar a.active,
+.dark-mode #mobileMenu a.active {
+    color: var(--primary-dark);
+}
+
+.dark-mode .navbar a.active::after,
+.dark-mode #mobileMenu a.active::after {
+    background: var(--primary-dark);
+}
+
 /* Active page navigation styles */
 .navbar a[href="Novels.html"],
 #mobileMenu a[href="Novels.html"] {
@@ -275,17 +286,6 @@ h1, h2, h3, h4, h5 {
     height: 2px;
     background: var(--primary-dark);
     opacity: 0.7;
-}
-
-/* Dark mode active class */
-.dark-mode .navbar a.active,
-.dark-mode #mobileMenu a.active {
-    color: var(--primary-dark);
-}
-
-.dark-mode .navbar a.active::after,
-.dark-mode #mobileMenu a.active::after {
-    background: var(--primary-dark);
 }
     </style>
 </head>
