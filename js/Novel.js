@@ -1095,163 +1095,135 @@ function initializeTheme() {
 // Call on page load
 document.addEventListener('DOMContentLoaded', initializeTheme);
 
-// Function to setup filter buttons
-function setupFilterButtons() {
+// Function to filter novels by genre
+function filterNovels() {
+    // Set up click listeners for filter buttons
     const filterButtons = document.querySelectorAll('.filter-button');
-    const novelsGrid = document.getElementById('novelsGrid');
     
-    // Add click event to each filter button
+    // Add CSS to highlight active button
+    const style = document.createElement('style');
+    style.textContent = `
+        .filter-button.active {
+            background-color: #ec4899 !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Ensure "All Novels" is active by default
+    const allNovelsButton = document.querySelector('.filter-button:first-child');
+    if (allNovelsButton) {
+        allNovelsButton.classList.add('active');
+    }
+    
+    // Initial display - show all novels
+    showAllNovels();
+    
+    // Add click handlers to all filter buttons
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Remove active class from all buttons
-            filterButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.remove('bg-pink-100');
-                btn.classList.add('bg-white');
-            });
+            filterButtons.forEach(btn => btn.classList.remove('active'));
             
-            // Add active class to the clicked button
+            // Add active class to clicked button
             this.classList.add('active');
-            this.classList.remove('bg-white');
-            this.classList.add('bg-pink-100');
             
-            // Get the selected genre
-            const selectedGenre = this.textContent.trim();
+            // Get selected genre (button text without extra spaces)
+            let selectedGenre = this.textContent.trim();
             
-            // Filter novels based on the selected genre
-            filterNovelsByGenre(selectedGenre);
+            // Filter novels based on selection
+            if (selectedGenre === 'All Novels') {
+                // Special case - show all novels regardless of genre
+                showAllNovels();
+            } else {
+                // Filter by the specific genre
+                filterByGenre(selectedGenre);
+            }
         });
     });
 }
 
-// Function to filter novels by genre
-function filterNovelsByGenre(selectedGenre) {
-    const novelsGrid = document.getElementById('novelsGrid');
-    if (!novelsGrid) return;
+// Function to show all novels regardless of genre
+function showAllNovels() {
+    // Get all novel cards
+    const novelCards = document.querySelectorAll('.novel-card');
     
-    // Clear existing novels
-    novelsGrid.innerHTML = '';
+    // Remove any existing "no novels" message
+    const existingMessage = document.getElementById('noNovelsMessage');
+    if (existingMessage) existingMessage.remove();
     
-    // Get novels to display based on filter
-    let filteredNovels;
-    if (selectedGenre === 'All Novels') {
-        filteredNovels = [...novels].reverse();
-    } else {
-        filteredNovels = novels.filter(novel => novel.genre === selectedGenre).reverse();
-    }
+    // Show all novels with animation
+    novelCards.forEach(card => {
+        // Make card visible
+        card.style.display = 'flex';
+        
+        // Animate it in
+        gsap.to(card, { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.3, 
+            ease: 'power2.out' 
+        });
+    });
+}
+
+// Function to filter by specific genre
+function filterByGenre(genre) {
+    // Get all novel cards
+    const novelCards = document.querySelectorAll('.novel-card');
+    let visibleCount = 0;
     
-    // Display filtered novels with animation
-    if (filteredNovels.length === 0) {
-        // Show "No novels found" message
-        const noNovelsMsg = document.createElement('div');
-        noNovelsMsg.className = 'col-span-full text-center p-10';
-        noNovelsMsg.innerHTML = `
-            <div class="text-xl text-gray-500 dark:text-gray-400">
-                <i class="fas fa-book-open mr-2"></i>
-                No novels found in the "${selectedGenre}" category
-            </div>
-        `;
-        novelsGrid.appendChild(noNovelsMsg);
-    } else {
-        // Create novel cards for filtered novels
-        filteredNovels.forEach((novel, index) => {
-            const card = document.createElement('div');
-            card.className = 'novel-card h-full flex flex-col novels-item';
-            card.style.opacity = '0';
-            card.dataset.novelId = novel.id;
-            
-            card.innerHTML = `
-                <div class="relative overflow-hidden scrollbar-hide rounded-t-lg h-94">
-                    <img src="${novel.coverImg}" alt="${novel.title}" class="w-full h-94 object-cover transition-transform duration-700 hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-                        <span class="text-white font-medium px-3 py-1 rounded-full text-sm">${novel.genre}</span>
-                    </div>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-2">${novel.title}</h3>
-                    <p class="text-sm mb-3 flex-grow">${novel.shortDescription}</p>
-                    <div class="novel-rating mb-3">
-                        <!-- Rating stars will be dynamically inserted here -->
-                        <div class="flex items-center">
-                            <div class="flex mr-1">
-                                <i class="far fa-star text-yellow-400"></i>
-                                <i class="far fa-star text-yellow-400"></i>
-                                <i class="far fa-star text-yellow-400"></i>
-                                <i class="far fa-star text-yellow-400"></i>
-                                <i class="far fa-star text-yellow-400"></i>
-                            </div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">(0)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm italic">By ${novel.author}</span>
-                        <button class="read-now-btn btn-primary text-white px-4 py-2 rounded-lg">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            novelsGrid.appendChild(card);
-            
-            // Add click event to the Read Now button
-            const readNowBtn = card.querySelector('.read-now-btn');
-            readNowBtn.addEventListener('click', () => {
-                openNovelModal(novel);
-            });
-            
-            // Animate novel cards
+    // Filter novels
+    novelCards.forEach(card => {
+        // Get the novel ID from the card
+        const novelId = parseInt(card.dataset.novelId);
+        
+        // Find the novel object
+        const novel = novels.find(n => n.id === novelId);
+        
+        if (!novel) return;
+        
+        // Check if the novel matches the selected genre
+        if (novel.genre === genre) {
+            // Show and animate in
+            card.style.display = 'flex';
             gsap.to(card, { 
                 opacity: 1, 
                 y: 0, 
-                duration: 0.5, 
-                delay: index * 0.1,
-                ease: 'power2.out'
+                duration: 0.3, 
+                ease: 'power2.out' 
             });
-        });
-    }
+            visibleCount++;
+        } else {
+            // Hide with animation
+            gsap.to(card, { 
+                opacity: 0, 
+                y: 20, 
+                duration: 0.3, 
+                ease: 'power2.in',
+                onComplete: function() {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    });
     
-    // If there was an active rating system, reload it
-    if (typeof ratingSystem !== 'undefined' && ratingSystem.loadAllNovelRatings) {
-        ratingSystem.loadAllNovelRatings();
-    }
+    // Check if we need to show "no novels" message after animations
+    setTimeout(() => {
+        // Remove any existing message
+        const existingMessage = document.getElementById('noNovelsMessage');
+        if (existingMessage) existingMessage.remove();
+        
+        // If no visible novels, add a message
+        if (visibleCount === 0) {
+            const novelsGrid = document.getElementById('novelsGrid');
+            const message = document.createElement('div');
+            message.id = 'noNovelsMessage';
+            message.className = 'col-span-full text-center py-10 text-gray-500 dark:text-gray-400';
+            message.innerHTML = `No novels found in the "${genre}" category.`;
+            novelsGrid.appendChild(message);
+        }
+    }, 350); // Wait for animations to complete
 }
-
-// Initialize filter buttons on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Setup the filter buttons
-    setupFilterButtons();
-    
-    // Set 'All Novels' as active by default
-    const allNovelsButton = document.querySelector('.filter-button');
-    if (allNovelsButton) {
-        allNovelsButton.classList.add('active');
-        allNovelsButton.classList.remove('bg-white');
-        allNovelsButton.classList.add('bg-pink-100');
-    }
-});
-
-// Add CSS styles for active filter button
-const style = document.createElement('style');
-style.textContent = `
-    .filter-button.active {
-        font-weight: bold;
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(213, 63, 140, 0.15);
-    }
-
-    /* Dark mode styles for filter buttons */
-    .dark-mode .filter-button {
-        background-color: #2d3748;
-        color: #f8b4d9;
-    }
-
-    .dark-mode .filter-button.active {
-        background-color: #4a5568;
-    }
-
-    .dark-mode .filter-button:hover {
-        background-color: #4a5568;
-    }
-`;
-document.head.appendChild(style);
