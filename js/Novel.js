@@ -612,6 +612,82 @@ const novels = [
     }
 ];
 
+// Filter novels by genre
+function filterNovels(genre = 'all') {
+    const novelCards = document.querySelectorAll('.novel-card');
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    // Update active filter button
+    filterButtons.forEach(button => {
+        if ((button.textContent.trim().toLowerCase() === genre.toLowerCase()) || 
+            (button.textContent.trim() === 'All Novels' && genre === 'all')) {
+            button.classList.add('active', 'bg-pink-100', 'text-pink-600');
+            button.classList.remove('bg-white', 'text-pink-500');
+        } else {
+            button.classList.remove('active', 'bg-pink-100', 'text-pink-600');
+            button.classList.add('bg-white', 'text-pink-500');
+        }
+    });
+    
+    // Filter novel cards
+    novelCards.forEach(card => {
+        const novelId = parseInt(card.dataset.novelId);
+        const novel = novels.find(n => n.id === novelId);
+        
+        if (!novel) return;
+        
+        // Show all novels if 'all' is selected, otherwise filter by genre
+        if (genre === 'all') {
+            // Show all novels
+            gsap.to(card, { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 0.3, 
+                ease: 'power1.out',
+                display: 'flex' 
+            });
+        } else if (novel.genre.toLowerCase() === genre.toLowerCase()) {
+            // Show matching genre
+            gsap.to(card, { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 0.3, 
+                ease: 'power1.out',
+                display: 'flex' 
+            });
+        } else {
+            // Hide non-matching cards
+            gsap.to(card, { 
+                opacity: 0, 
+                scale: 0.95, 
+                duration: 0.3, 
+                ease: 'power1.in',
+                onComplete: function() {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    });
+}
+
+// Setup filter buttons
+function setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            let genre;
+            if (this.textContent.trim() === 'All Novels') {
+                genre = 'all';
+            } else {
+                genre = this.textContent.trim();
+            }
+            
+            filterNovels(genre);
+        });
+    });
+}
+
 
 // Variables to track current state
 let currentNovel = null;
@@ -630,6 +706,9 @@ document.addEventListener('DOMContentLoaded', function() {
             createPetal(petalsContainer);
         }
     }
+
+    // Setup filter buttons
+    setupFilterButtons();
     
     // Generate novel cards
     generateNovelCards();
