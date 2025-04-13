@@ -9,6 +9,7 @@ const novels = [
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
         Episodes: 80,
+        publishDate: "2023-10-01",
         episodes: [
             {
                 id: 1,
