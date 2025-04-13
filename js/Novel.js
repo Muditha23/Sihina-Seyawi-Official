@@ -630,6 +630,9 @@ document.addEventListener('DOMContentLoaded', function() {
             createPetal(petalsContainer);
         }
     }
+
+    // Initialize filters
+    filterNovels();
     
     // Generate novel cards
     generateNovelCards();
@@ -1095,126 +1098,99 @@ function initializeTheme() {
 // Call on page load
 document.addEventListener('DOMContentLoaded', initializeTheme);
 
-// Function to filter novels by genre
+// Enhanced function to filter novels by genre
 function filterNovels() {
     // Set up click listeners for filter buttons
     const filterButtons = document.querySelectorAll('.filter-button');
     
-    // Add CSS to highlight active button
-    const style = document.createElement('style');
-    style.textContent = `
-        .filter-button.active {
-            background-color: #ec4899 !important;
-            color: white !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Ensure "All Novels" is active by default
-    const allNovelsButton = document.querySelector('.filter-button:first-child');
-    if (allNovelsButton) {
-        allNovelsButton.classList.add('active');
-    }
-    
-    // Initial display - show all novels
-    showAllNovels();
-    
-    // Add click handlers to all filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Get selected genre (button text without extra spaces)
-            let selectedGenre = this.textContent.trim();
-            
-            // Filter novels based on selection
-            if (selectedGenre === 'All Novels') {
-                // Special case - show all novels regardless of genre
-                showAllNovels();
+    // Function to update button styles
+    function updateButtonStyles(activeButton) {
+        // Update styles for all buttons
+        filterButtons.forEach(btn => {
+            if (btn === activeButton) {
+                // Active button styles
+                btn.classList.add('active');
+                btn.classList.add('bg-pink-500');
+                btn.classList.add('text-white');
+                btn.classList.remove('bg-white');
+                btn.classList.remove('text-pink-500');
             } else {
-                // Filter by the specific genre
-                filterByGenre(selectedGenre);
+                // Inactive button styles
+                btn.classList.remove('active');
+                btn.classList.remove('bg-pink-500');
+                btn.classList.remove('text-white');
+                btn.classList.add('bg-white');
+                btn.classList.add('text-pink-500');
             }
         });
-    });
-}
-
-// Function to show all novels regardless of genre
-function showAllNovels() {
-    // Get all novel cards
-    const novelCards = document.querySelectorAll('.novel-card');
+    }
     
-    // Remove any existing "no novels" message
-    const existingMessage = document.getElementById('noNovelsMessage');
-    if (existingMessage) existingMessage.remove();
-    
-    // Show all novels with animation
-    novelCards.forEach(card => {
-        // Make card visible
-        card.style.display = 'flex';
+    // Function to filter and display novels
+    function filterAndDisplayNovels(selectedGenre) {
+        // Get all novel cards
+        const novelCards = document.querySelectorAll('.novel-card');
+        let visibleCount = 0;
         
-        // Animate it in
-        gsap.to(card, { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.3, 
-            ease: 'power2.out' 
-        });
-    });
-}
-
-// Function to filter by specific genre
-function filterByGenre(genre) {
-    // Get all novel cards
-    const novelCards = document.querySelectorAll('.novel-card');
-    let visibleCount = 0;
-    
-    // Filter novels
-    novelCards.forEach(card => {
-        // Get the novel ID from the card
-        const novelId = parseInt(card.dataset.novelId);
-        
-        // Find the novel object
-        const novel = novels.find(n => n.id === novelId);
-        
-        if (!novel) return;
-        
-        // Check if the novel matches the selected genre
-        if (novel.genre === genre) {
-            // Show and animate in
-            card.style.display = 'flex';
-            gsap.to(card, { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.3, 
-                ease: 'power2.out' 
-            });
-            visibleCount++;
-        } else {
-            // Hide with animation
-            gsap.to(card, { 
-                opacity: 0, 
-                y: 20, 
-                duration: 0.3, 
-                ease: 'power2.in',
-                onComplete: function() {
-                    card.style.display = 'none';
+        // Filter novels
+        novelCards.forEach(card => {
+            // Get the novel ID from the card
+            const novelId = parseInt(card.dataset.novelId);
+            
+            // Find the novel object
+            const novel = novels.find(n => n.id === novelId);
+            
+            if (!novel) return;
+            
+            // Show/hide based on filter
+            if (selectedGenre === 'All Novels') {
+                // Show all novels
+                card.style.display = 'flex';
+                visibleCount++;
+                
+                // Animate the card back in
+                gsap.to(card, { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.3, 
+                    ease: 'power2.out' 
+                });
+            } else {
+                // Check if the novel matches the selected genre
+                if (novel.genre === selectedGenre) {
+                    // Show and animate in
+                    card.style.display = 'flex';
+                    visibleCount++;
+                    gsap.to(card, { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.3, 
+                        ease: 'power2.out' 
+                    });
+                } else {
+                    // Hide with animation
+                    gsap.to(card, { 
+                        opacity: 0, 
+                        y: 20, 
+                        duration: 0.3, 
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            card.style.display = 'none';
+                        }
+                    });
                 }
-            });
-        }
-    });
+            }
+        });
+        
+        return visibleCount;
+    }
     
-    // Check if we need to show "no novels" message after animations
-    setTimeout(() => {
-        // Remove any existing message
+    // Handle "no novels found" message
+    function handleNoNovelsMessage(visibleCount, selectedGenre) {
+        // Remove any existing "no novels" message
         const existingMessage = document.getElementById('noNovelsMessage');
-        if (existingMessage) existingMessage.remove();
+        if (existingMessage) {
+            existingMessage.remove();
+        }
         
         // If no visible novels, add a message
         if (visibleCount === 0) {
@@ -1222,8 +1198,37 @@ function filterByGenre(genre) {
             const message = document.createElement('div');
             message.id = 'noNovelsMessage';
             message.className = 'col-span-full text-center py-10 text-gray-500 dark:text-gray-400';
-            message.innerHTML = `No novels found in the "${genre}" category.`;
+            message.innerHTML = `No novels found in the "${selectedGenre}" category.`;
             novelsGrid.appendChild(message);
         }
-    }, 350); // Wait for animations to complete
+    }
+    
+    // Set up click event for each button
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update button styles
+            updateButtonStyles(this);
+            
+            // Get selected genre (button text without extra spaces)
+            let selectedGenre = this.textContent.trim();
+            
+            // Filter and display novels
+            const visibleCount = filterAndDisplayNovels(selectedGenre);
+            
+            // Handle "no novels found" message after animations complete
+            setTimeout(() => {
+                handleNoNovelsMessage(visibleCount, selectedGenre);
+            }, 350);
+        });
+    });
+    
+    // Make sure "All Novels" is selected by default at the start
+    const allNovelsButton = Array.from(filterButtons).find(btn => btn.textContent.trim() === 'All Novels');
+    if (allNovelsButton) {
+        // Apply active styles to "All Novels" button
+        updateButtonStyles(allNovelsButton);
+        
+        // Make sure all novels are visible initially
+        filterAndDisplayNovels('All Novels');
+    }
 }
