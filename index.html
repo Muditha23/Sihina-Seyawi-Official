@@ -329,7 +329,7 @@ footer {
 }
 
 /* Active page navigation styles */
-.navbar a[href="index.html"],
+.navbar a[href="index.html"]:not(.flex),
 #mobileMenu a[href="index.html"],
 .navbar a.active,
 #mobileMenu a.active {
@@ -338,7 +338,8 @@ footer {
     position: relative;
 }
 
-.navbar a[href="index.html"]::after,
+/* Underline effect - excluding logo */
+.navbar a[href="index.html"]:not(.flex)::after,
 #mobileMenu a[href="index.html"]::after,
 .navbar a.active::after,
 #mobileMenu a.active::after {
@@ -363,12 +364,14 @@ footer {
 a, button, input, select, textarea {
     transition: all 0.3s ease;
 }
+
     </style>
 </head>
 <body class="bg-gradient">
     <!-- Navigation -->
     <nav class="navbar fixed top-0 w-full bg-white bg-opacity-80 backdrop-blur-md shadow-sm z-40">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!--Logo & Name-->
             <div class="flex justify-between items-center py-4">
                 <a href="index.html" class="flex items-center gap-4">
                     <img src="img/Logo.jpg" alt="Logo" class="w-12 h-12 rounded-full object-cover border-2 border-pink-200 shadow-sm">

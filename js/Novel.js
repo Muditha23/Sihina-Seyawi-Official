@@ -612,82 +612,6 @@ const novels = [
     }
 ];
 
-// Filter novels by genre
-function filterNovels(genre = 'all') {
-    const novelCards = document.querySelectorAll('.novel-card');
-    const filterButtons = document.querySelectorAll('.filter-button');
-    
-    // Update active filter button
-    filterButtons.forEach(button => {
-        if ((button.textContent.trim().toLowerCase() === genre.toLowerCase()) || 
-            (button.textContent.trim() === 'All Novels' && genre === 'all')) {
-            button.classList.add('active', 'bg-pink-100', 'text-pink-600');
-            button.classList.remove('bg-white', 'text-pink-500');
-        } else {
-            button.classList.remove('active', 'bg-pink-100', 'text-pink-600');
-            button.classList.add('bg-white', 'text-pink-500');
-        }
-    });
-    
-    // Filter novel cards
-    novelCards.forEach(card => {
-        const novelId = parseInt(card.dataset.novelId);
-        const novel = novels.find(n => n.id === novelId);
-        
-        if (!novel) return;
-        
-        // Show all novels if 'all' is selected, otherwise filter by genre
-        if (genre === 'all') {
-            // Show all novels
-            gsap.to(card, { 
-                opacity: 1, 
-                scale: 1, 
-                duration: 0.3, 
-                ease: 'power1.out',
-                display: 'flex' 
-            });
-        } else if (novel.genre.toLowerCase() === genre.toLowerCase()) {
-            // Show matching genre
-            gsap.to(card, { 
-                opacity: 1, 
-                scale: 1, 
-                duration: 0.3, 
-                ease: 'power1.out',
-                display: 'flex' 
-            });
-        } else {
-            // Hide non-matching cards
-            gsap.to(card, { 
-                opacity: 0, 
-                scale: 0.95, 
-                duration: 0.3, 
-                ease: 'power1.in',
-                onComplete: function() {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    });
-}
-
-// Setup filter buttons
-function setupFilterButtons() {
-    const filterButtons = document.querySelectorAll('.filter-button');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            let genre;
-            if (this.textContent.trim() === 'All Novels') {
-                genre = 'all';
-            } else {
-                genre = this.textContent.trim();
-            }
-            
-            filterNovels(genre);
-        });
-    });
-}
-
 
 // Variables to track current state
 let currentNovel = null;
@@ -707,8 +631,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Setup filter buttons
-    setupFilterButtons();
+    // Initialize filters
+    filterNovels();
     
     // Generate novel cards
     generateNovelCards();
@@ -1173,3 +1097,136 @@ function initializeTheme() {
 
 // Call on page load
 document.addEventListener('DOMContentLoaded', initializeTheme);
+
+// Function to filter novels by genre
+function filterNovels() {
+    // Set up click listeners for filter buttons
+    const filterButtons = document.querySelectorAll('.filter-button');
+    
+    // Add CSS to highlight active button
+    const style = document.createElement('style');
+    style.textContent = `
+        .filter-button.active {
+            background-color: #ec4899 !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Ensure "All Novels" is active by default
+    const allNovelsButton = document.querySelector('.filter-button:first-child');
+    if (allNovelsButton) {
+        allNovelsButton.classList.add('active');
+    }
+    
+    // Initial display - show all novels
+    showAllNovels();
+    
+    // Add click handlers to all filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get selected genre (button text without extra spaces)
+            let selectedGenre = this.textContent.trim();
+            
+            // Filter novels based on selection
+            if (selectedGenre === 'All Novels') {
+                // Special case - show all novels regardless of genre
+                showAllNovels();
+            } else {
+                // Filter by the specific genre
+                filterByGenre(selectedGenre);
+            }
+        });
+    });
+}
+
+// Function to show all novels regardless of genre
+function showAllNovels() {
+    // Get all novel cards
+    const novelCards = document.querySelectorAll('.novel-card');
+    
+    // Remove any existing "no novels" message
+    const existingMessage = document.getElementById('noNovelsMessage');
+    if (existingMessage) existingMessage.remove();
+    
+    // Show all novels with animation
+    novelCards.forEach(card => {
+        // Make card visible
+        card.style.display = 'flex';
+        
+        // Animate it in
+        gsap.to(card, { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.3, 
+            ease: 'power2.out' 
+        });
+    });
+}
+
+// Function to filter by specific genre
+function filterByGenre(genre) {
+    // Get all novel cards
+    const novelCards = document.querySelectorAll('.novel-card');
+    let visibleCount = 0;
+    
+    // Filter novels
+    novelCards.forEach(card => {
+        // Get the novel ID from the card
+        const novelId = parseInt(card.dataset.novelId);
+        
+        // Find the novel object
+        const novel = novels.find(n => n.id === novelId);
+        
+        if (!novel) return;
+        
+        // Check if the novel matches the selected genre
+        if (novel.genre === genre) {
+            // Show and animate in
+            card.style.display = 'flex';
+            gsap.to(card, { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.3, 
+                ease: 'power2.out' 
+            });
+            visibleCount++;
+        } else {
+            // Hide with animation
+            gsap.to(card, { 
+                opacity: 0, 
+                y: 20, 
+                duration: 0.3, 
+                ease: 'power2.in',
+                onComplete: function() {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    });
+    
+    // Check if we need to show "no novels" message after animations
+    setTimeout(() => {
+        // Remove any existing message
+        const existingMessage = document.getElementById('noNovelsMessage');
+        if (existingMessage) existingMessage.remove();
+        
+        // If no visible novels, add a message
+        if (visibleCount === 0) {
+            const novelsGrid = document.getElementById('novelsGrid');
+            const message = document.createElement('div');
+            message.id = 'noNovelsMessage';
+            message.className = 'col-span-full text-center py-10 text-gray-500 dark:text-gray-400';
+            message.innerHTML = `No novels found in the "${genre}" category.`;
+            novelsGrid.appendChild(message);
+        }
+    }, 350); // Wait for animations to complete
+}
