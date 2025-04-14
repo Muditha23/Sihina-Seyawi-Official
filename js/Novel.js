@@ -633,6 +633,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize filters
     filterNovels();
+
+    
+    setupSwipeControls();
     
     // Generate novel cards
     generateNovelCards();
@@ -1230,5 +1233,40 @@ function filterNovels() {
         
         // Make sure all novels are visible initially
         filterAndDisplayNovels('All Novels');
+    }
+}
+
+// Add swipe functionality for touch screens
+function setupSwipeControls() {
+    const txtViewerModal = document.getElementById('txtViewerModal');
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    txtViewerModal.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, false);
+    
+    txtViewerModal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    }, false);
+    
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum distance for swipe
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                // Swipe right - go to previous episode
+                if (!document.getElementById('prevEpisodeBtn').disabled) {
+                    goToPrevEpisode();
+                }
+            } else {
+                // Swipe left - go to next episode
+                if (!document.getElementById('nextEpisodeBtn').disabled) {
+                    goToNextEpisode();
+                }
+            }
+        }
     }
 }
