@@ -440,114 +440,84 @@
         </div>
 
         <!-- Text Viewer Modal with Episode Navigation -->
-        <div id="txtViewerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="txtViewerModal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 hidden">
             <div class="modal-overlay absolute inset-0 bg-black bg-opacity-75"></div>
-
-            <div
-                class="w-full max-w-4xl max-h-[90vh] bg-white dark:bg-gray-800 rounded-lg shadow-xl z-10 flex flex-col">
+        
+            <div class="w-full max-w-4xl max-h-[90vh] bg-white dark:bg-gray-800 rounded-lg shadow-xl z-10 flex flex-col overflow-hidden">
                 <!-- Viewer Header -->
-                <div
-                    class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-white dark:bg-gray-800">
-                    <div class="flex items-center">
-                        <button id="backToNovelBtn"
-                            class="mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <div class="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-white dark:bg-gray-800">
+                    <div class="flex items-center flex-1 min-w-0">
+                        <button id="backToNovelBtn" class="mr-2 sm:mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-full p-1" aria-label="Back to novel list">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                         </button>
-                        <h2 id="txtTitle" class="text-xl font-bold truncate text-gray-800 dark:text-gray-100">Episode
-                            Title</h2>
+                        <h2 id="txtTitle" class="text-lg sm:text-xl font-bold truncate text-gray-800 dark:text-gray-100">Episode Title</h2>
                     </div>
-                    <button id="closeTxtViewer"
-                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                    <button id="closeTxtViewer" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-full p-1" aria-label="Close viewer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
-
+        
                 <!-- Viewer Controls -->
-                <div
-                    class="p-2 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
-                    <div class="flex items-center space-x-4">
+                <div class="p-2 border-b border-gray-200 dark:border-gray-700 flex flex-wrap gap-2 justify-between items-center bg-gray-50 dark:bg-gray-900">
+                    <div class="flex items-center flex-wrap gap-2 sm:gap-4">
                         <!-- Page Navigation -->
-                        <div class="flex items-center space-x-2">
-                            <button id="prevPageBtn"
-                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 19l-7-7 7-7" />
+                        <div class="flex items-center space-x-1 sm:space-x-2">
+                            <button id="prevPageBtn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" aria-label="Previous page">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
-                            <span id="pageCounter" class="text-sm text-gray-700 dark:text-gray-300">1 / 10</span>
-                            <button id="nextPageBtn"
-                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
+                            <span id="pageCounter" class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">1 / 10</span>
+                            <button id="nextPageBtn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" aria-label="Next page">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
                         </div>
-
+        
                         <!-- Font Size Controls -->
-                        <div class="flex items-center space-x-2">
-                            <button id="decreaseFontBtn"
-                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M20 12H4" />
+                        <div class="flex items-center space-x-1 sm:space-x-2">
+                            <button id="decreaseFontBtn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" aria-label="Decrease font size">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
                                 </svg>
                             </button>
-                            <span class="text-sm text-gray-700 dark:text-gray-300">Font</span>
-                            <button id="increaseFontBtn"
-                                class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 4v16m8-8H4" />
+                            <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">Font</span>
+                            <button id="increaseFontBtn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" aria-label="Increase font size">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
                             </button>
                         </div>
                     </div>
-
-                    <div class="flex items-center space-x-4">
+        
+                    <div class="flex items-center flex-wrap gap-2 sm:gap-4">
                         <!-- Episode Navigation -->
                         <div class="flex items-center space-x-2">
-                            <button id="prevEpisodeBtn"
-                                class="px-2 py-1 rounded text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800">
+                            <button id="prevEpisodeBtn" class="px-2 py-1 rounded text-xs sm:text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-500">
                                 Prev Episode
                             </button>
-                            <button id="nextEpisodeBtn"
-                                class="px-2 py-1 rounded text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800">
+                            <button id="nextEpisodeBtn" class="px-2 py-1 rounded text-xs sm:text-sm bg-pink-100 text-pink-800 hover:bg-pink-200 dark:bg-pink-900 dark:text-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-500">
                                 Next Episode
                             </button>
                         </div>
-
+        
                         <!-- Fullscreen Toggle -->
-                        <button id="fullscreenBtn"
-                            class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                        <button id="fullscreenBtn" class="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500" aria-label="Toggle fullscreen">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
                             </svg>
                         </button>
                     </div>
                 </div>
-
+        
                 <!-- Text Content Area -->
-                <div id="txtViewerContainer" class="flex-grow overflow-y-auto p-6 bg-white dark:bg-gray-800"
-                    style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
-                    <div id="txtContent" class="max-w-none text-gray-800 dark:text-gray-100"
-                        oncontextmenu="return false;" onselectstart="return false" ondragstart="return false"
-                        oncopy="return false">
+                <div id="txtViewerContainer" class="flex-grow overflow-y-auto p-3 sm:p-6 bg-white dark:bg-gray-800 scroll-smooth" style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+                    <div id="txtContent" class="max-w-none prose prose-sm sm:prose lg:prose-lg dark:prose-invert text-gray-800 dark:text-gray-100 mx-auto" oncontextmenu="return false;" onselectstart="return false" ondragstart="return false" oncopy="return false">
                         <!-- Text content will be loaded here -->
                     </div>
                 </div>
