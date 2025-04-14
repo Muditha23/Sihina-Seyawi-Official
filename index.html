@@ -433,14 +433,14 @@ a, button, input, select, textarea {
                         <button class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-lg shadow-md transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400">
                             Discover Novels
                         </button>
-                        <button class="px-8 py-3 bg-white hover:bg-gray-100 text-pink-600 font-medium rounded-lg shadow-md border border-pink-200 transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400">
+                        <button class="px-8 py-3 bg-white hover:bg-gray-100 text-pink-600 font-medium rounded-lg shadow-md border border-pink-200 transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400" onclick="document.querySelector('#Author-Spotlight').scrollIntoView({behavior: 'smooth'})">
                             About Author
                         </button>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2 flex justify-center fade-in fade-in-delay-1">
                     <div class="relative w-64 h-80 md:w-72 md:h-96">
-                        <img src="img/ස්නේහ කිරණ.jpg" alt="Romance Novel Cover" class="w-full h-full object-cover rounded-lg shadow-xl floating book-cover">
+                        <img src="img/ලංවී හදට රහසින්.jpg" alt="Romance Novel Cover" class="w-full h-full object-cover rounded-lg shadow-xl floating book-cover">
                         <div class="absolute -bottom-4 -right-4 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg p-3 shadow-lg">
                             <div class="text-pink-600 text-sm font-medium">Latest Release</div>
                             <div class="text-gray-800 font-serif font-semibold">ස්නේහ කිරණක්</div>
@@ -456,7 +456,7 @@ a, button, input, select, textarea {
     </section>
 
     <!-- Author Spotlight -->
-    <section class="py-16">
+    <section id="Author-Spotlight" class="py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <div class="rounded-xl p-6 md:p-8 lg:p-12 shadow-lg bg-white backdrop-blur-sm bg-opacity-90">
             <div class="flex flex-col md:flex-row items-center gap-8">
