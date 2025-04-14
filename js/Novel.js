@@ -955,14 +955,62 @@ function setupModals() {
     // Fullscreen Toggle
     document.getElementById('fullscreenBtn').addEventListener('click', () => {
         const elem = document.getElementById('txtViewerContainer');
-        if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch(err => {
-                alert(`Error attempting to enable fullscreen: ${err.message}`);
-            });
+        
+        if (!document.fullscreenElement && 
+            !document.webkitFullscreenElement && 
+            !document.mozFullScreenElement &&
+            !document.msFullscreenElement) {
+            
+            // Request fullscreen with cross-browser support
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { // Safari/Chrome
+                elem.webkitRequestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+            
+            // Ensure controls remain visible in fullscreen
+            elem.classList.add('fullscreen-active');
+            
         } else {
-            document.exitFullscreen();
+            // Exit fullscreen with cross-browser support
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            
+            // Remove fullscreen-specific styles
+            elem.classList.remove('fullscreen-active');
         }
     });
+
+    // Listen for fullscreen changes
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    function handleFullscreenChange() {
+        const elem = document.getElementById('txtViewerContainer');
+        const isFullscreen = document.fullscreenElement || 
+                           document.webkitFullscreenElement || 
+                           document.mozFullScreenElement ||
+                           document.msFullscreenElement;
+        
+        if (isFullscreen) {
+            elem.classList.add('fullscreen-active');
+        } else {
+            elem.classList.remove('fullscreen-active');
+        }
+    }
     
     // Episode navigation
     document.getElementById('prevEpisodeBtn').addEventListener('click', goToPrevEpisode);
