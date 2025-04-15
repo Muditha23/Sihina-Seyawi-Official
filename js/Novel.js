@@ -84,7 +84,7 @@ const novels = [
                 {
                     id: 15,
                     title: "Episode 14",
-                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 14.txt
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 14.txt"
                 },
                 {
                     id: 16,
