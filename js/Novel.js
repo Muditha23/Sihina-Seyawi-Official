@@ -441,8 +441,8 @@ const novels = [
         author: "Tharuka Sewwandi",
         genre: "Romance",
         coverImg: "img/පිය මනිමු මල් මාවතේ.jpg",
-        shortDescription: "A passionate love story set in the city of lights.",
-        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
+        shortDescription: "අහිමි වූ පියාගේ සෙනෙහස නැවත ලැබූ දියණියක්.",
+        description: "",
         Episodes: 28,
         episodes: [
             {
