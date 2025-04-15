@@ -2,6 +2,139 @@
 const novels = [
     {
         id: 1,
+        title: "මග හැරුණු හීනේ කුමාරී",
+        author: "Tharuka Sewwandi",
+        genre: "Romance",
+        coverImg: "img/මග හැරුණු හීනේ කුමාරී.jpg",
+        shortDescription: "A passionate love story set in the city of lights.",
+        description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
+        Episodes: 23,
+        episodes: [
+                {
+                    id: 1,
+                    title: "Intro",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Introduction.txt"
+                },
+                {
+                    id: 2,
+                    title: "Episode 01",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 01.txt"
+                },
+                
+                {
+                    id: 3,
+                    title: "Episode 02",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 02.txt"
+                },
+                {
+                    id: 4,
+                    title: "Episode 03",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 03.txt"
+                },
+                {
+                    id: 5,
+                    title: "Episode 04",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 04.txt"
+                },
+                {
+                    id: 6,
+                    title: "Episode 05",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 05.txt"
+                },
+                {
+                    id: 7,
+                    title: "Episode 06",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 06.txt"
+                },
+                {
+                    id: 8,
+                    title: "Episode 07",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 07.txt"
+                },
+                {
+                    id: 9,
+                    title: "Episode 08",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 08.txt"
+                },
+                {
+                    id: 10,
+                    title: "Episode 09",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 09.txt"
+                },
+                {
+                    id: 11,
+                    title: "Episode 10",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 10.txt"
+                },
+                {
+                    id: 12,
+                    title: "Episode 11",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 11.txt"
+                },
+                {
+                    id: 13,
+                    title: "Episode 12",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 12.txt"
+                },
+                {
+                    id: 14,
+                    title: "Episode 13",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 13.txt"
+                },
+                {
+                    id: 15,
+                    title: "Episode 14",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 14.txt"
+                },
+                {
+                    id: 16,
+                    title: "Episode 15",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 15.txt"
+                },
+                {
+                    id: 17,
+                    title: "Episode 16",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 16.txt"
+                },
+                {
+                    id: 18,
+                    title: "Episode 17",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 17.txt"
+                },
+                {
+                    id: 19,
+                    title: "Episode 18",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 18.txt"
+                },
+                {
+                    id: 20,
+                    title: "Episode 19",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 19.txt"
+                },
+                {
+                    id: 21,
+                    title: "Episode 20",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 20.txt"
+                },
+                {
+                    id: 22,
+                    title: "Episode 21",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 21.txt"
+                },
+                {
+                    id: 23,
+                    title: "Episode 22",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 22.txt"
+                },
+                {
+                    id: 24,
+                    title: "Episode 23",
+                    txtUrl: "Novels/මග හැරුණු හීනේ කුමාරී/Episode 23.txt"
+                }
+        ]
+    },
+    {
+        id: 2,
         title: "නුඹ දුරද තවම මට",
         author: "Tharuka Sewwandi",
         genre: "Romance",
@@ -419,7 +552,7 @@ const novels = [
         ]
     },
     {
-        id: 2,
+        id: 3,
         title: "මගේ සඳ නුඹ",
         author: "Tharuka Sewwandi",
         genre: "Romance",
@@ -436,7 +569,7 @@ const novels = [
         ]
     },
     {
-        id: 3,
+        id: 4,
         title: "පිය මනිමු මල් මාවතේ",
         author: "Tharuka Sewwandi",
         genre: "Romance",
@@ -593,7 +726,7 @@ const novels = [
         ]
     },
     {
-        id: 4,
+        id: 5,
         title: "ලං වී හදට රහසින්",
         author: "Tharuka Sewwandi",
         genre: "Romance",
