@@ -1017,6 +1017,7 @@ function generateNovelCards() {
                 <img src="${novel.coverImg}" alt="${novel.title}" class="w-full h-94 object-cover transition-transform duration-700 hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                     <span class="text-white font-medium px-3 py-1 rounded-full text-sm">${novel.genre}</span>
+                    <span class="absolute bottom-4 right-4 px-2 py-1 bg-black/60 text-white text-sm rounded-full">${novel.publishDate}</span>
                 </div>
             </div>
             <div class="p-5 flex flex-col flex-grow">
