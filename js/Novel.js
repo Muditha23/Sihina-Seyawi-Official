@@ -548,6 +548,11 @@ const novels = [
                 id: 81,
                 title: "Episode 80",
                 txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 80.txt"
+            },
+            {
+                id: 82,
+                title: "Episode 81",
+                txtUrl: "Novels/නුඹ දුරද තවම මට/Episode 81.txt"
             }
         ]
     },
