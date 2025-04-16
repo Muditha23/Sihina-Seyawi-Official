@@ -113,7 +113,7 @@ function createFeaturedNovelCard(novel, index) {
             </div>
             <p class="text-gray-600 mb-4 line-clamp-3">${novel.shortDescription}</p>
             <button class="w-full bg-pink-100 hover:bg-pink-200 text-pink-600 font-medium py-2 rounded-lg transition featured-novel-btn">
-                Read Now
+                More Details
             </button>
         </div>
     `;
