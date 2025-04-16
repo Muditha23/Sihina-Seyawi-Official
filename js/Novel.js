@@ -9,6 +9,7 @@ const novels = [
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
         Episodes: 23,
+        publishDate: "2024-07-21",
         episodes: [
                 {
                     id: 1,
@@ -142,7 +143,7 @@ const novels = [
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
         Episodes: 81,
-        publishDate: "2023-10-01",
+        publishDate: "2024-09-04",
         episodes: [
             {
                 id: 1,
@@ -565,6 +566,7 @@ const novels = [
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
         Episodes: 40,
+        publishDate: "2024-10-08",
         episodes: [
             {
                 id: 1,
@@ -782,6 +784,7 @@ const novels = [
         shortDescription: "අහිමි වූ පියාගේ සෙනෙහස නැවත ලැබූ දියණියක්.",
         description: "අහිමිවුණ හැමදේම ආපහු ලැබෙන්නෙ නෑ, නමුත් ලැබෙන එකේ වටිනාකම තවත් කිසිදිනෙකත් අමතක කරන්නෙ නෑ. මේ නවකතාව කියන්නේ ඒ වටිනාකම අරුතෙන් යටපත් වෙලා පිරුණු ආදරයක ගමනක්.",
         Episodes: 28,
+        publishDate: "2024-10-25",
         episodes: [
             {
                 id: 1,
@@ -938,7 +941,7 @@ const novels = [
         coverImg: "img/ලංවී හදට රහසින්.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        publishDate: "2023-10-01",
+        publishDate: "2024-12-10",
         Episodes: 24,
         episodes: [
             {
