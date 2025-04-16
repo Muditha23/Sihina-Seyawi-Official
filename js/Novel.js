@@ -141,7 +141,7 @@ const novels = [
         coverImg: "img/නුඹ දුරද තවම මට.jpg",
         shortDescription: "A passionate love story set in the city of lights.",
         description: "When Elise meets Jacques on a rainy evening in Montmartre, she doesn't expect their chance encounter to change her life forever. Set against the romantic backdrop of Paris, this novel explores passion, art, and the unexpected ways love transforms us.",
-        Episodes: 80,
+        Episodes: 81,
         publishDate: "2023-10-01",
         episodes: [
             {
@@ -570,6 +570,206 @@ const novels = [
                 id: 1,
                 title: "Intro",
                 txtUrl: "Novels/මගේ සඳ නුඹ/Introduction.txt"
+            },
+            {
+                id: 2,
+                title: "Episode 01",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 01.txt"
+            },
+            {
+                id: 3,
+                title: "Episode 02",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 02.txt"
+            },
+            {
+                id: 4,
+                title: "Episode 03",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 03.txt"
+            },
+            {
+                id: 5,
+                title: "Episode 04",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 04.txt"
+            },
+            {
+                id: 6,
+                title: "Episode 05",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 05.txt"
+            },
+            {
+                id: 7,
+                title: "Episode 06",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 06.txt"
+            },
+            {
+                id: 8,
+                title: "Episode 07",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 07.txt"
+            },
+            {
+                id: 9,
+                title: "Episode 08",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 08.txt"
+            },
+            {
+                id: 10,
+                title: "Episode 09",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 09.txt"
+            },
+            {
+                id: 11,
+                title: "Episode 10",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 10.txt"
+            },
+            {
+                id: 12,
+                title: "Episode 11",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 11.txt"
+            },
+            {
+                id: 13,
+                title: "Episode 12",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 12.txt"
+            },
+            {
+                id: 14,
+                title: "Episode 13",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 13.txt"
+            },
+            {
+                id: 15,
+                title: "Episode 14",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 14.txt"
+            },
+            {
+                id: 16,
+                title: "Episode 15",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 15.txt"
+            },
+            {
+                id: 17,
+                title: "Episode 16",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 16.txt"
+            },
+            {
+                id: 18,
+                title: "Episode 17",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 17.txt"
+            },
+            {
+                id: 19,
+                title: "Episode 18",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 18.txt"
+            },
+            {
+                id: 20,
+                title: "Episode 19",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 19.txt"
+            },
+            {
+                id: 21,
+                title: "Episode 20",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 20.txt"
+            },
+            {
+                id: 22,
+                title: "Episode 21",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 21.txt"
+            },
+            {
+                id: 23,
+                title: "Episode 22",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 22.txt"
+            },
+            {
+                id: 24,
+                title: "Episode 23",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 23.txt"
+            },
+            {
+                id: 25,
+                title: "Episode 24",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 24.txt"
+            },
+            {
+                id: 26,
+                title: "Episode 25",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 25.txt"
+            },
+            {
+                id: 27,
+                title: "Episode 26",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 26.txt"
+            },
+            {
+                id: 28,
+                title: "Episode 27",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 27.txt"
+            },
+            {
+                id: 29,
+                title: "Episode 28",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 28.txt"
+            },
+            {
+                id: 30,
+                title: "Episode 29",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 29.txt"
+            },
+            {
+                id: 31,
+                title: "Episode 30",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 30.txt"
+            },
+            {
+                id: 32,
+                title: "Episode 31",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 31.txt"
+            },
+            {
+                id: 33,
+                title: "Episode 32",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 32.txt"
+            },
+            {
+                id: 34,
+                title: "Episode 33",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 33.txt"
+            },
+            {
+                id: 35,
+                title: "Episode 34",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 34.txt"
+            },
+            {
+                id: 36,
+                title: "Episode 35",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 35.txt"
+            },
+            {
+                id: 37,
+                title: "Episode 36",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 36.txt"
+            },
+            {
+                id: 38,
+                title: "Episode 37",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 37.txt"
+            },
+            {
+                id: 39,
+                title: "Episode 38",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 38.txt"
+            },
+            {
+                id: 40,
+                title: "Episode 39",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 39.txt"
+            },
+            {
+                id:41,
+                title: "Episode 40",
+                txtUrl: "Novels/මගේ සඳ නුඹ/Episode 40.txt"
             }
         ]
     },
